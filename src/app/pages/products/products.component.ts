@@ -12,7 +12,7 @@ import { SeoService } from '../../services/seo.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export default class ProductsComponent implements OnInit {
   private productsService = inject(ProductsService);
   private seoService = inject(SeoService);
 
@@ -50,4 +50,5 @@ export class ProductsComponent implements OnInit {
       url: 'https://tu-dominio.com/productos'
     });
   }
+  
 }

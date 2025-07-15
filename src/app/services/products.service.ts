@@ -1,7 +1,8 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Firestore, collection, doc, getDoc, getDocs, addDoc, setDoc, query, where, orderBy, limit } from '@angular/fire/firestore';
-import { Observable, from, map, of, forkJoin } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { Observable, from, of, forkJoin } from 'rxjs';
+import { catchError, switchMap, map } from 'rxjs/operators';
 import { Product } from '../models/product';
 
 @Injectable({
@@ -9,9 +10,20 @@ import { Product } from '../models/product';
 })
 export class ProductsService {
   private firestore = inject(Firestore);
+  private platformId = inject(PLATFORM_ID);
+
+  // Verificar si estamos en el navegador
+  private get isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
 
   // Obtener todos los productos
   getProducts(): Observable<Product[]> {
+    // Si no estamos en el navegador, devolver productos mock
+    if (!this.isBrowser) {
+      return of(this.getMockProducts());
+    }
+
     try {
       const productsCollection = collection(this.firestore, 'products');
       const productsQuery = query(productsCollection, limit(10));
@@ -44,34 +56,13 @@ export class ProductsService {
     }
   }
 
-  // Obtener producto por ID
-  getProductById(id: string): Observable<Product | null> {
-    try {
-      const productDoc = doc(this.firestore, `products/${id}`);
-      
-      return from(getDoc(productDoc)).pipe(
-        map(doc => {
-          if (doc.exists()) {
-            return {
-              id: doc.id,
-              ...doc.data()
-            } as Product;
-          }
-          return null;
-        }),
-        catchError(error => {
-          console.error('Error fetching product by ID:', error);
-          return of(null);
-        })
-      );
-    } catch (error) {
-      console.error('Error in getProductById:', error);
-      return of(null);
-    }
-  }
-
   // Obtener producto por slug (para SEO)
   getProductBySlug(slug: string): Observable<Product | null> {
+    // Si no estamos en el navegador, buscar en productos mock
+    if (!this.isBrowser) {
+      return of(this.getMockProducts().find(p => p.slug === slug) || null);
+    }
+
     try {
       const productsCollection = collection(this.firestore, 'products');
       const productQuery = query(productsCollection, where('slug', '==', slug), limit(1));
@@ -100,6 +91,11 @@ export class ProductsService {
 
   // Obtener productos por categoría
   getProductsByCategory(category: string): Observable<Product[]> {
+    // Si no estamos en el navegador, filtrar productos mock
+    if (!this.isBrowser) {
+      return of(this.getMockProducts().filter(p => p.category === category));
+    }
+
     try {
       const productsCollection = collection(this.firestore, 'products');
       const categoryQuery = query(
@@ -126,12 +122,15 @@ export class ProductsService {
     }
   }
 
-  // Subir un producto a Firebase
+  // Subir un producto a Firebase (solo en navegador)
   uploadProduct(product: Omit<Product, 'id'>): Observable<string> {
+    if (!this.isBrowser) {
+      throw new Error('Upload solo disponible en el navegador');
+    }
+
     try {
       const productsCollection = collection(this.firestore, 'products');
       
-      // Añadir timestamps
       const productData = {
         ...product,
         createdAt: new Date(),
@@ -154,37 +153,16 @@ export class ProductsService {
     }
   }
 
-  // Actualizar un producto existente
-  updateProduct(id: string, product: Partial<Product>): Observable<void> {
-    try {
-      const productDoc = doc(this.firestore, `products/${id}`);
-      
-      const updateData = {
-        ...product,
-        updatedAt: new Date()
-      };
-      
-      return from(setDoc(productDoc, updateData, { merge: true })).pipe(
-        map(() => {
-          console.log('Producto actualizado con ID:', id);
-        }),
-        catchError(error => {
-          console.error('Error updating product:', error);
-          throw error;
-        })
-      );
-    } catch (error) {
-      console.error('Error in updateProduct:', error);
-      throw error;
-    }
-  }
-
-  // Cargar productos mockeados a Firebase
+  // Cargar productos mockeados a Firebase (solo en navegador)
   loadMockProductsToFirebase(): Observable<string[]> {
+    if (!this.isBrowser) {
+      return of([]);
+    }
+
     try {
       const mockProducts = this.getMockProducts();
       const uploadObservables = mockProducts.map(product => {
-        const { id, ...productData } = product; // Remover el ID mockeado
+        const { id, ...productData } = product;
         return this.uploadProduct(productData);
       });
       
@@ -195,47 +173,13 @@ export class ProductsService {
         }),
         catchError(error => {
           console.error('Error cargando productos mockeados:', error);
-          throw error;
+          return of([]);
         })
       );
     } catch (error) {
       console.error('Error in loadMockProductsToFirebase:', error);
-      throw error;
+      return of([]);
     }
-  }
-
-  // Verificar si hay productos en la base de datos
-  hasProducts(): Observable<boolean> {
-    try {
-      const productsCollection = collection(this.firestore, 'products');
-      const productsQuery = query(productsCollection, limit(1));
-      
-      return from(getDocs(productsQuery)).pipe(
-        map(snapshot => !snapshot.empty),
-        catchError(error => {
-          console.error('Error checking if products exist:', error);
-          return of(false);
-        })
-      );
-    } catch (error) {
-      console.error('Error in hasProducts:', error);
-      return of(false);
-    }
-  }
-
-  // Inicializar productos si no existen
-  initializeProducts(): Observable<void> {
-    return this.hasProducts().pipe(
-      switchMap(hasProducts => {
-        if (!hasProducts) {
-          console.log('Inicializando productos en Firebase...');
-          return this.loadMockProductsToFirebase().pipe(
-            map(() => void 0)
-          );
-        }
-        return of(void 0);
-      })
-    );
   }
 
   // Productos de ejemplo para desarrollo

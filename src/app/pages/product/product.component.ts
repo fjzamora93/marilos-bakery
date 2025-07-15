@@ -12,7 +12,7 @@ import { Product } from '../../models/product';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export default class ProductComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private productsService = inject(ProductsService);
   private seoService = inject(SeoService);

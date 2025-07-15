@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { first, map, take, filter, from } from 'rxjs';
-import { AuthService } from '../app/services/auth.service';
+import { AuthService } from './auth/auth.service';
 
 
 // Protege rutas privadas para que NO sean accesibles si NO está autentificado

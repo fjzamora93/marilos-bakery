@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+     @if (isAuthenticated){
+      <button 
+        class="btn btn-outline-secondary me-3" 
+        type="button" 
+        data-bs-toggle="offcanvas" 
+        data-bs-target="#offcanvasMenu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    }
+      
+      <a class="navbar-brand" href="/">
+        <img src="favicon.png" alt="Logo" style="width: 32px; margin-right: 10px;">
+      </a>
+    </div>
+
+    @if (!isAuthenticated){
+    <button 
+      class="btn btn-outline-primary ms-auto" 
+      data-bs-toggle="modal" 
+      data-bs-target="#loginModal">
+      Login
+    </button>
+    } @else {
+     <div class="d-flex align-items-center ms-auto">
+      <span class="navbar-text me-2">
+        ¡Hola, {{ currentUser?.email ? (currentUser!.email!.split("@")[0]) : '' }} !
+      </span>
+      <button 
+        class="btn btn-outline-secondary" 
+        (click)="onLogout()">
+        Logout
+      </button>
+    </div>
+    }
+  </div>
+</nav>
+<!-- Bootstrap Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menú</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a (click)="navigateAndClose('/templates/')" class="text-decoration-none d-flex align-items-center" style="cursor: pointer;">
+          <mat-icon class="me-3">upload_file</mat-icon>
+          Gestionar plantillas
+        </a>
+      </li>
+ 
+      <li class="list-group-item">
+        <a (click)="navigateAndClose('/privacy-policy')" class="text-decoration-none d-flex align-items-center" style="cursor: pointer;">
+          <mat-icon class="me-3">policy</mat-icon>
+          Política de privacidad
+        </a>
+      </li>
+
+      <!-- <li class="list-group-item">
+        <a (click)="navigateAndClose('/contact')" class="text-decoration-none d-flex align-items-center" style="cursor: pointer;">
+          <mat-icon class="me-3">contact_mail</mat-icon>
+          Contacto
+        </a>
+      </li> -->
+
+    </ul>
+  </div>
+</div>
+
+<!-- Incluir el componente login -->
+<app-login></app-login>
