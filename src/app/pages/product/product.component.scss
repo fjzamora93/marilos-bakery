@@ -1,0 +1,35 @@
+.product-container {
+  @apply max-w-6xl mx-auto p-6;
+}
+
+.product-header {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+}
+
+.product-image {
+  @apply w-full h-96 object-cover rounded-lg shadow-lg;
+}
+
+.product-info {
+  @apply space-y-4;
+}
+
+.product-title {
+  @apply text-3xl font-bold text-gray-900;
+}
+
+.product-category {
+  @apply text-sm text-gray-600 uppercase tracking-wide;
+}
+
+.product-price {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.product-description {
+  @apply text-gray-700 leading-relaxed;
+}
+
+.loading {
+  @apply flex items-center justify-center h-64;
+}

@@ -2,7 +2,18 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
 
+# Desarrollo normal
+ng serve
+
+# Construir para producción con SSR
+ng build
+
+# Servir aplicación SSR
+npm run serve:ssr:seo-project
+
+
 ## Development server
+
 
 To start a local development server, run:
 

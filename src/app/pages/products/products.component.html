@@ -1,0 +1,37 @@
+<div class="products-container">
+  <div class="products-header">
+    <h1>Nuestros Productos</h1>
+    <p>Descubre nuestra amplia gama de productos de calidad</p>
+  </div>
+
+  <div class="products-grid" *ngIf="!loading && !error && products.length > 0">
+    <div class="product-card" *ngFor="let product of products">
+      <a [routerLink]="['/producto', product.slug]" class="product-link">
+        <img 
+          [src]="product.imageUrl" 
+          [alt]="product.name"
+          class="product-image"
+          loading="lazy"
+        />
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-category">{{ product.category }}</p>
+          <p class="product-price">{{ product.price | currency:'EUR' }}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    <p>Cargando productos...</p>
+  </div>
+
+  <div class="error" *ngIf="error">
+    <p>{{ error }}</p>
+    <button (click)="loadProducts()" class="retry-btn">Reintentar</button>
+  </div>
+
+  <div class="no-products" *ngIf="!loading && !error && products.length === 0">
+    <p>No hay productos disponibles</p>
+  </div>
+</div>
