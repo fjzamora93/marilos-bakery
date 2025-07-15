@@ -1,12 +1,7 @@
-import { Component, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
-import { getApp } from '@angular/fire/app';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/auth/auth.service';
-
-declare var bootstrap: any;
-
-
 
 @Component({
   selector: 'app-login',
@@ -16,10 +11,10 @@ declare var bootstrap: any;
   imports: [CommonModule, FormsModule],
   providers: [AuthService]
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements AfterViewInit, OnDestroy {
   email: string = '';
   password: string = '';
-  private modalInstance: any;
+  isModalOpen = false;
   private isBrowser: boolean;
 
   constructor(
@@ -32,24 +27,59 @@ export class LoginComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Solo ejecutar en el navegador
     if (this.isBrowser) {
-      const modalElement = this.document.getElementById('loginModal');
-      if (modalElement && typeof bootstrap !== 'undefined') {
-        this.modalInstance = new bootstrap.Modal(modalElement);
-      }
+      // Agregar listener para cerrar con ESC
+      this.document.addEventListener('keydown', this.handleKeydown.bind(this));
     }
   }
 
+  ngOnDestroy() {
+    if (this.isBrowser) {
+      this.document.removeEventListener('keydown', this.handleKeydown.bind(this));
+    }
+  }
+
+  private handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape' && this.isModalOpen) {
+      this.closeModal();
+    }
+  }
+
+  private clearForm() {
+    this.email = '';
+    this.password = '';
+  }
+
   openModal() {
-    if (this.isBrowser && this.modalInstance) {
-      this.modalInstance.show();
+    if (this.isBrowser) {
+      this.isModalOpen = true;
+      // Prevenir scroll del body
+      this.document.body.style.overflow = 'hidden';
+      
+      // Focus en el primer input después de que el modal se abra
+      setTimeout(() => {
+        const emailInput = this.document.getElementById('email') as HTMLInputElement;
+        if (emailInput) {
+          emailInput.focus();
+        }
+      }, 100);
     }
   }
 
   closeModal() {
-    if (this.isBrowser && this.modalInstance) {
-      this.modalInstance.hide();
+    if (this.isBrowser) {
+      console.log('Closing modal');
+      this.isModalOpen = false;
+      // Restaurar scroll del body
+      this.document.body.style.overflow = 'auto';
+      this.clearForm();
+    }
+  }
+
+  onBackdropClick(event: Event) {
+    // Cerrar modal si se hace clic en el backdrop
+    if (event.target === event.currentTarget) {
+      this.closeModal();
     }
   }
 
@@ -69,8 +99,7 @@ export class LoginComponent implements AfterViewInit {
         this.closeModal();
         
         // Limpiar formulario
-        this.email = '';
-        this.password = '';
+        this.clearForm();
       } catch (error) {
         console.error('Error en login:', error);
         // Aquí puedes mostrar un mensaje de error al usuario
