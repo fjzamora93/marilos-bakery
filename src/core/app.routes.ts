@@ -8,15 +8,22 @@ export const routes: Routes = [
   // Rutas públicas con Layout
   {
     path: '',
-    loadComponent: () => import('../app/layout/layout.component'),
+    loadComponent: () => import('../app/shared/layout/layout.component'),
     loadChildren: () => import('../app/products/product.routes'),
+  },
+
+   // Home
+  {
+    path: 'about',
+    loadComponent: () => import('../app/shared/layout/layout.component'),
+    loadChildren: () => import('../app/shared/pages/shared.routes'),
   },
   
   // Rutas de administración SIN Layout (opcional)
   {
     path: 'admin',
     canActivateChild: [adminGuard],
-    loadComponent: () => import('../app/layout/layout.component'),
+    loadComponent: () => import('../app/shared/layout/layout.component'),
     loadChildren: () => import('../app/admin/admin.routes'),
   },
   
@@ -24,19 +31,20 @@ export const routes: Routes = [
   {
     path: 'user',
     canActivateChild: [privateGuard],
-    loadComponent: () => import('../app/layout/layout.component'),
+    loadComponent: () => import('../app/shared/layout/layout.component'),
     loadChildren: () => import('../app/user/user.routes'),
   },
   
-  // Ruta de error 404
+    // Ruta de error 404 - DEBE estar fuera del layout para evitar loops
   {
     path: '404',
-    loadComponent: () => import('../app/layout/not-found/not-found.component').then(m => m.NotFoundComponent),
+    loadComponent: () => import('../app/shared/pages/not-found/not-found.component'),
+    title: 'Error:404 - Página no encontrada'
   },
   
-  //Redirección por defecto
+  // Wildcard route - SIEMPRE debe ser la última
   {
     path: '**',
-    redirectTo: '/productos'
+    redirectTo: '/404'
   }
 ];

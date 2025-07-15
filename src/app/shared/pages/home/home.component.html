@@ -1,0 +1,182 @@
+<!-- Página de inicio con diseño moderno usando solo Tailwind -->
+<div class="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+  
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="text-center">
+        <!-- Logo animado -->
+        <div class="flex justify-center mb-8">
+          <div class="relative group">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center ring-4 ring-white/20 group-hover:ring-white/40 transition-all duration-300 shadow-2xl">
+              <svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div class="absolute -top-2 -right-2 h-6 w-6 bg-green-500 rounded-full border-4 border-black animate-pulse"></div>
+            <div class="absolute -bottom-2 -left-2 h-4 w-4 bg-blue-500 rounded-full border-2 border-black animate-pulse animation-delay-500"></div>
+          </div>
+        </div>
+        
+        <!-- Título principal -->
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Bienvenido a
+          </span>
+          <br />
+          <span class="text-white">Mi Tienda</span>
+        </h1>
+        
+        <!-- Subtítulo -->
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Descubre una experiencia de compra única con productos de calidad, 
+          ofertas exclusivas y un servicio excepcional.
+        </p>
+        
+        <!-- Botones de acción -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+          <a href="/productos" 
+             class="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl">
+            <span class="relative z-10 flex items-center justify-center">
+              <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              Explorar Productos
+            </span>
+            <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
+          </a>
+          
+          <a href="/ofertas" 
+             class="group relative overflow-hidden bg-transparent text-white px-8 py-4 rounded-full font-semibold text-lg border-2 border-white/30 hover:border-white/60 hover:bg-white/10 transition-all duration-300">
+            <span class="flex items-center justify-center">
+              <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Ver Ofertas
+            </span>
+          </a>
+        </div>
+        
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-white mb-2">1000+</div>
+            <div class="text-gray-400">Productos Disponibles</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-white mb-2">50+</div>
+            <div class="text-gray-400">Categorías</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-white mb-2">24/7</div>
+            <div class="text-gray-400">Soporte</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Características principales -->
+  <section class="py-20 bg-gray-900/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">
+          ¿Por qué elegir 
+          <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Mi Tienda?
+          </span>
+        </h2>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+          Ofrecemos la mejor experiencia de compra con beneficios únicos
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Característica 1 -->
+        <div class="group relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-6 group-hover:from-blue-600 group-hover:to-blue-700 transition-all duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4">Productos de Calidad</h3>
+            <p class="text-gray-300">
+              Seleccionamos cuidadosamente cada producto para garantizar la mejor calidad y durabilidad.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Característica 2 -->
+        <div class="group relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-pink-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mb-6 group-hover:from-purple-600 group-hover:to-purple-700 transition-all duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4">Entrega Rápida</h3>
+            <p class="text-gray-300">
+              Envíos gratuitos y entregas en tiempo récord para que recibas tus productos lo antes posible.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Característica 3 -->
+        <div class="group relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-br from-green-600/10 to-teal-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative z-10">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-6 group-hover:from-green-600 group-hover:to-green-700 transition-all duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-4">Garantía Total</h3>
+            <p class="text-gray-300">
+              Todos nuestros productos incluyen garantía completa y soporte técnico especializado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Llamada a la acción -->
+  <section class="py-20 bg-gradient-to-r from-blue-600/20 to-purple-600/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-white mb-6">
+        ¿Listo para empezar?
+      </h2>
+      <p class="text-xl text-gray-300 mb-8">
+        Únete a miles de clientes satisfechos y descubre lo que tenemos para ti.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/productos" 
+           class="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl">
+          <span class="relative z-10 flex items-center justify-center">
+            Comenzar Ahora
+            <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </span>
+          <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
+        </a>
+        
+        <a href="/contact" 
+           class="group flex items-center justify-center px-8 py-4 text-white font-semibold text-lg hover:text-blue-400 transition-colors duration-200">
+          <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+          Contactar
+        </a>
+      </div>
+    </div>
+  </section>
+  
+</div>

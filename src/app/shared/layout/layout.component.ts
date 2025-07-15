@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
+import { TopBarComponent } from '@shared/layout/top-bar/top-bar.component';
+import { BottomBarComponent } from '@shared/layout/bottom-bar/bottom-bar.component';
 
 @Component({
   selector: 'app-layout',

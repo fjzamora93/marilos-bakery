@@ -53,6 +53,7 @@
       <!-- Usuario y Login (Lado derecho) -->
       <div class="flex items-center space-x-4">
         @if (!isAuthenticated) {
+          
           <button 
             class="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             (click)="openLoginModal()">
@@ -64,6 +65,7 @@
             </span>
             <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
           </button>
+
         } @else {
           <div class="flex items-center space-x-3">
             <!-- Avatar y Saludo -->

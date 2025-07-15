@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { User } from '@angular/fire/auth';
-import { AuthService } from '../../../core/auth/auth.service';
+import { AuthService } from '../../../../core/auth/auth.service';
 import { LoginComponent } from '../login/login.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
