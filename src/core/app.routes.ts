@@ -9,31 +9,32 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('../app/layout/layout.component'),
-    loadChildren: () => import('../app/pages/public.routes'),
+    loadChildren: () => import('../app/products/product.routes'),
   },
   
-  //// Rutas de administración SIN Layout (opcional)
-  // {
-  //   path: 'admin',
-  //   canActivateChild: [adminGuard],
-  //   loadChildren: () => import('../app/pages/admin.routes'),
-  // },
+  // Rutas de administración SIN Layout (opcional)
+  {
+    path: 'admin',
+    canActivateChild: [adminGuard],
+    loadComponent: () => import('../app/layout/layout.component'),
+    loadChildren: () => import('../app/admin/admin.routes'),
+  },
   
-  // // Rutas privadas con Layout diferente (opcional)
-  // {
-  //   path: 'dashboard',
-  //   canActivateChild: [privateGuard],
-  //   loadComponent: () => import('../app/components/layout/dashboard-layout.component'),
-  //   loadChildren: () => import('../app/pages/private.routes'),
-  // },
+  // Rutas privadas con Layout diferente (opcional)
+  {
+    path: 'user',
+    canActivateChild: [privateGuard],
+    loadComponent: () => import('../app/layout/layout.component'),
+    loadChildren: () => import('../app/user/user.routes'),
+  },
   
-  // // Ruta de error 404
-  // {
-  //   path: '404',
-  //   loadComponent: () => import('../app/pages/not-found/not-found.component'),
-  // },
+  // Ruta de error 404
+  {
+    path: '404',
+    loadComponent: () => import('../app/layout/not-found/not-found.component').then(m => m.NotFoundComponent),
+  },
   
-  // Redirección por defecto
+  //Redirección por defecto
   {
     path: '**',
     redirectTo: '/productos'

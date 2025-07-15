@@ -14,7 +14,7 @@ export const serverRoutes: ServerRoute[] = [
     path: 'productos',
     renderMode: RenderMode.Server
   },
-  
+
   // Ruta home
   {
     path: '',

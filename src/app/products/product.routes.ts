@@ -11,14 +11,14 @@ export default [
   // Lista de productos
   {
     path: 'productos',
-    loadComponent: () => import('./products/products.component'),
+    loadComponent: () => import('./pages/products/products.component'),
     title: 'Productos - Tu Tienda Online'
   },
   
   // Detalle de producto - DEBE COINCIDIR CON SERVER ROUTES
   {
     path: 'producto/:slug',
-    loadComponent: () => import('./product/product.component'),
+    loadComponent: () => import('./pages/product/product.component'),
     title: 'Producto - Tu Tienda Online'
   },
   
