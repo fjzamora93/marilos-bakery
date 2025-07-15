@@ -2,7 +2,7 @@ import { Component, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { getApp } from '@angular/fire/app';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../../../core/auth/auth.service';
+import { AuthService } from '../../../core/auth/auth.service';
 
 declare var bootstrap: any;
 

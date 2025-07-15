@@ -1,6 +1,8 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
+// Rutas del lado del SERVIDOR. Se llama desde "app.config.server.ts"
 export const serverRoutes: ServerRoute[] = [
+  
   // Ruta para productos individuales (debe coincidir con la ruta del cliente)
   {
     path: 'producto/:slug',

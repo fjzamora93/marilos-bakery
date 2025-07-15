@@ -18,7 +18,7 @@ const authInterceptor: HttpInterceptorFn = (req, next) => {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(routes, withComponentInputBinding()), // SISTEMA DE RUTAS DEL CLIENTE
     provideHttpClient(withInterceptors([authInterceptor]), withFetch()),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),

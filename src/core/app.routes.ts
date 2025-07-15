@@ -1,11 +1,14 @@
 import { Routes } from '@angular/router';
 import { adminGuard, privateGuard, publicGuard } from './auth.guard';
 
+
+// Rutas del lado del cliente. Se llama desde "app.config.ts"
+
 export const routes: Routes = [
   // Rutas públicas con Layout
   {
     path: '',
-    loadComponent: () => import('../app/components/layout/layout.component'),
+    loadComponent: () => import('../app/layout/layout.component'),
     loadChildren: () => import('../app/pages/public.routes'),
   },
   
