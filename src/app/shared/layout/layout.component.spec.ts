@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import LayoutComponent from './layout.component';
+import { provideAuthMock } from 'test/mock-providers/auth-mock';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -14,6 +15,9 @@ describe('LayoutComponent', () => {
         LayoutComponent,
         RouterTestingModule
       ],
+       providers: [
+              provideAuthMock
+            ],
       schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();

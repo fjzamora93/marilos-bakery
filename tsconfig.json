@@ -24,7 +24,8 @@
       "@user/*": ["app/user/*"],
       "@shared/*": ["app/shared/*"],
       "@core/*": ["app/core/*"],
-      "@environments/*": ["environments/*"]
+      "@environments/*": ["environments/*"],
+      "@test/*": ["test/*"]
     }
   },
   "angularCompilerOptions": {

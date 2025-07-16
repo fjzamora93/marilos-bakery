@@ -3,22 +3,10 @@ import { of } from 'rxjs';
 import ProductComponent from './product.component';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '@app/products/services/products.service';
+import { activatedRouteProvider, productsServiceProvider } from '@test/index';
 
-// 1. Mock de ActivatedRoute
-const activatedRouteMock = {
-  snapshot: {
-    paramMap: {
-      get: (key: string) => 'mockId'
-    }
-  }
-};
 
-// 2. Mock de ProductsService
-class ProductsServiceMock {
-  getProduct(id: string) {
-    return of({ id, name: 'Producto de prueba' });
-  }
-}
+
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
@@ -28,9 +16,8 @@ describe('ProductComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ProductComponent],
       providers: [
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-        { provide: ProductsService, useClass: ProductsServiceMock }
-        // Si tu ProductsService internamente usa Firestore, podrías también mockear Firestore aquí.
+        activatedRouteProvider,
+        productsServiceProvider,
       ]
     }).compileComponents();
 
