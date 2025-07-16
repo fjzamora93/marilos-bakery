@@ -8,7 +8,7 @@ import { provideHttpClient, withInterceptors, withFetch, HttpInterceptorFn } fro
 
 import { routes } from '../core/app.routes';
 import { environment } from '../environments/environment';
-// import { provideTranslate } from '../core/translate-config'; // 🔧 SOLUCIÓN: Comentar temporalmente
+import { provideTranslate } from '../core/translate-config';
 
 // Crear un interceptor de autenticación básico
 const authInterceptor: HttpInterceptorFn = (req, next) => {
@@ -25,6 +25,6 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    // provideTranslate(), // 🔧 SOLUCIÓN: Comentar temporalmente
+    provideTranslate(),
   ],
 };
