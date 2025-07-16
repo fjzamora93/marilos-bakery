@@ -11,4 +11,5 @@ export  interface Product {
   seoKeywords?: string;
   createdAt: Date;
   updatedAt: Date;
+  userUid?: string; 
 }

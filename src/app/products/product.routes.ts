@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
 export default [
-  // Ruta home (redirige a productos)
+  // Ruta home directa
   {
     path: '',
-    redirectTo: '/productos',
-    pathMatch: 'full'
+    loadComponent: () => import('../shared/pages/home/home.component'),
+    title: 'Home - Tu Tienda Online'
   },
   
   // Lista de productos

@@ -29,9 +29,9 @@ describe('ProductsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should display the 3 products in the template', () => {
+  it('should display the 5 products in the template', () => {
     const productElements: DebugElement[] = fixture.debugElement.queryAll(By.css('.product-card'));
-    expect(productElements.length).toBe(3);
+    expect(productElements.length).toBe(5);
 
     productElements.forEach((el, index) => {
       const name = el.query(By.css('.product-name')).nativeElement.textContent.trim();

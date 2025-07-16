@@ -16,4 +16,8 @@ import { BottomBarComponent } from '@shared/layout/bottom-bar/bottom-bar.compone
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export default class LayoutComponent { }
+export default class LayoutComponent { 
+  constructor() {
+    console.log('🔧 LayoutComponent constructor called');
+  }
+}
