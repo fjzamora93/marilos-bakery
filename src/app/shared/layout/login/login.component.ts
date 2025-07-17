@@ -50,6 +50,8 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     this.password = '';
   }
 
+
+
   openModal() {
     if (this.isBrowser) {
       this.isModalOpen = true;
@@ -94,16 +96,25 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
         console.log('Login attempt:', this.email, this.password);
         const user = await this.authService.login(this.email, this.password);
         console.log('Login successful:', user);
-        
-        // Cerrar modal después del login exitoso
         this.closeModal();
-        
-        // Limpiar formulario
         this.clearForm();
       } catch (error) {
         console.error('Error en login:', error);
-        // Aquí puedes mostrar un mensaje de error al usuario
       }
     }
+  }
+
+  async loginWithGoogle() {
+    if (!this.isBrowser) {
+      console.log('Login con Google no disponible en SSR');
+      return;
+    }
+    this.authService.loginWithGoogle().then(() => {
+      console.log('Login con Google exitoso');
+      this.closeModal();
+      this.clearForm();
+    }).catch(error => {
+      console.error('Error en login con Google:', error);
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, onAuthStateChanged, User, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Auth, onAuthStateChanged, User, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -66,6 +66,16 @@ export class AuthService {
     } catch (error) {
       console.error('Logout error:', error);
       throw error;
+    }
+  }
+
+  async loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(this.auth, provider);
+      console.log('Usuario logueado:', result.user);
+    } catch (err) {
+      console.error('Error en login con Google:', err);
     }
   }
 
