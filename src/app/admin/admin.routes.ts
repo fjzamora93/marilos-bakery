@@ -5,7 +5,7 @@ export default [
 
   // Panel de administración
   {
-    path: 'dashboard',
+    path: '',
     loadComponent: () => import('./pages/dashboard/dashboard.component'),
     title: 'Panel de administración'
   },

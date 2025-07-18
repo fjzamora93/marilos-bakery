@@ -1,7 +1,9 @@
-import { inject } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { first, map, take, filter, from } from 'rxjs';
+import { first, map, take, filter, from, of } from 'rxjs';
 import { AuthService } from './auth/auth.service';
+import { isPlatformBrowser } from '@angular/common';
+import { SINGLE_ADMIN_EMAIL } from '@app/shared/constants/firebase.constants';
 
 
 // Protege rutas privadas para que NO sean accesibles si NO está autentificado
@@ -9,6 +11,7 @@ export const privateGuard: CanActivateFn = () => {
   const router = inject(Router);
   const authService = inject(AuthService);
 
+  // Rutas normales de la aplicación (SSR)
   return from(authService.waitForAuthInitialization()).pipe(
     map(() => {
       const user = authService.currentUser;
@@ -26,17 +29,42 @@ export const privateGuard: CanActivateFn = () => {
   );
 };
 
+// Rutas del Admin (no deben usar SSR)
+
+export const adminGuard: CanActivateFn = () => {
+  const platformId = inject(PLATFORM_ID);
+  if (!isPlatformBrowser(platformId)) {
+    // SSR: no permitas el acceso
+    return of(false);
+  }
+
+  const router = inject(Router);
+  const authService = inject(AuthService);
+  return from(authService.waitForAuthInitialization()).pipe(
+    map(() => {
+      const user = authService.currentUser;
+      if (!user) {
+        router.navigateByUrl('/home');
+        return false;
+      }
+      if (user.email !== SINGLE_ADMIN_EMAIL) {
+        router.navigateByUrl('/home');
+        return false;
+      }
+      return true;
+    })
+  );
+};
+
+
 
 // Protege rutas públicas para que NO sean accesibles si ya está autentificado
 export const publicGuard : CanActivateFn = () => {
   const router = inject(Router);
   const authService = inject(AuthService);
-
   return from(authService.waitForAuthInitialization()).pipe(
     map(() => {
       const user = authService.currentUser;
-      //console.log('Public guard evaluating user after initialization:', user);
-      
       if (user) {
         console.log('User authenticated, redirecting to home');
         router.navigateByUrl('/home');
@@ -49,29 +77,3 @@ export const publicGuard : CanActivateFn = () => {
   );
 };
 
-
-export const adminGuard: CanActivateFn = () => {
-  const router = inject(Router);
-  const authService = inject(AuthService);
-
-  return from(authService.waitForAuthInitialization()).pipe(
-    map(() => {
-      const user = authService.currentUser;
-
-      if (!user) {
-        console.log('User not authenticated, redirecting to home');
-        router.navigateByUrl('/home');
-        return false;
-      }
-
-      if (user.email !== 'admin@gmail.com') {
-        console.log('User is not admin, redirecting to unauthorized page or home');
-        router.navigateByUrl('/home'); // o a alguna página de acceso denegado
-        return false;
-      }
-
-      console.log('User is admin, access allowed');
-      return true;
-    })
-  );
-};
