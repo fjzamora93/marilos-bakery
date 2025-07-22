@@ -47,7 +47,8 @@ module.exports = {
       },
       fontFamily: {
         'script': ['Dancing Script', 'cursive'],
-        'elegant': ['Playfair Display', 'serif'],
+        'elegant': ['Quicksand', 'sans-serif'],
+        'handwriting': ['Kalam', 'cursive'],
       },
       boxShadow: {
         'warm': '0 4px 14px 0 rgba(212, 165, 116, 0.2)',

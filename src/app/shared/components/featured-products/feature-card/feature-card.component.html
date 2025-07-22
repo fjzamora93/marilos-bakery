@@ -1,0 +1,37 @@
+<a 
+  [href]="url"
+  class="block group relative bg-white/60 backdrop-blur-sm rounded-3xl overflow-hidden border border-bakery-gold/30 transition-all duration-300 hover:transform hover:scale-105 shadow-sweet hover:shadow-bakery cursor-pointer"
+  [class]="hoverBorderClass">
+  
+  <!-- Imagen del producto -->
+  <div class="relative h-48 overflow-hidden">
+    <img 
+      [src]="image" 
+      [alt]="title"
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+    
+    <!-- Badge flotante -->
+    <div 
+      class="absolute top-4 right-4 text-white px-3 py-1 rounded-full text-sm font-semibold"
+      [class]="badgeColorClass">
+      {{ badge }}
+    </div>
+  </div>
+  
+  <div class="p-6">
+    <div class="flex items-center mb-4">
+      <div 
+        class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
+        [class]="iconColorClass">
+        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path [attr.d]="iconSvg"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-elegant font-semibold text-bakery-deep">{{ title }}</h3>
+    </div>
+    <p class="text-bakery-brown">
+      {{ body }}
+    </p>
+  </div>
+</a>

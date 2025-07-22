@@ -8,13 +8,14 @@ import { LoginComponent } from '../login/login.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from 'core/translation/language.service';
+import { LogoComponent } from "@app/shared/components/logo/logo.component";
 
 @Component({
   selector: 'app-top-bar',
   standalone: true,
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss'],
-  imports: [CommonModule, RouterModule, LoginComponent, SidebarComponent, TranslateModule]
+  imports: [CommonModule, RouterModule, LoginComponent, SidebarComponent, TranslateModule, LogoComponent]
 
 })
 export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {

@@ -9,25 +9,20 @@
         <div class="lg:col-span-2">
           <div class="flex items-center space-x-3 mb-4">
             <div class="relative">
-              <div class="w-12 h-12 rounded-full bg-gradient-to-r from-accent-caramel to-bakery-gold flex items-center justify-center ring-2 ring-bakery-gold/30">
-                <!-- Icono de cupcake -->
-                <svg class="w-6 h-6 text-bakery-cream" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C10.89 2 10 2.89 10 4V5H8C6.89 5 6 5.89 6 7V8C4.89 8 4 8.89 4 10V18C4 19.11 4.89 20 6 20H18C19.11 20 20 19.11 20 18V10C20 8.89 19.11 8 18 8V7C18 5.89 17.11 5 16 5H14V4C14 2.89 13.11 2 12 2M12 4C12 4 12 4 12 4V5H12V4M8 7H16V8H8V7M6 10H18V18H6V10Z"/>
-                </svg>
-              </div>
+              <app-logo [size]="10" />
               <div class="absolute -top-1 -right-1 h-4 w-4 bg-accent-strawberry rounded-full animate-pulse"></div>
             </div>
             <div class="flex flex-col">
               <h2 class="text-2xl font-elegant font-bold bg-gradient-to-r from-bakery-gold to-accent-honey bg-clip-text text-transparent">
                 Marilo's Bakery
               </h2>
-              <span class="text-bakery-warm text-sm font-script">Repostería con alma</span>
+              <span class="text-bakery-warm text-sm font-handwriting">Repostería con alma</span>
             </div>
           </div>
           
           <p class="text-bakery-warm text-sm leading-relaxed mb-6 max-w-md">
-            Desde 1999, creamos dulces momentos con recetas familiares transmitidas de generación en generación. 
-            Cada producto está elaborado con amor, ingredientes naturales y la pasión de más de 25 años de tradición.
+            Desde 2015, creamos dulces momentos con recetas familiares transmitidas de generación en generación. 
+            Cada producto está elaborado con amor, ingredientes naturales y las ganas de probar siempre algo nuevo.
           </p>
           
           <div class="flex space-x-4">
@@ -37,12 +32,7 @@
                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
               </svg>
             </a>
-            
-            <a href="#" class="group p-3 rounded-xl bg-bakery-brown/30 hover:bg-accent-caramel/20 transition-all duration-300 border border-bakery-gold/20 hover:border-accent-caramel">
-              <svg class="w-5 h-5 text-bakery-gold group-hover:text-accent-honey transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.162-1.499-.69-2.436-2.888-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.357-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-              </svg>
-            </a>
+          
             
             <a href="#" class="group p-3 rounded-xl bg-bakery-brown/30 hover:bg-accent-caramel/20 transition-all duration-300 border border-bakery-gold/20 hover:border-accent-caramel">
               <svg class="w-5 h-5 text-bakery-gold group-hover:text-accent-honey transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
@@ -76,7 +66,7 @@
                 <svg class="w-4 h-4 mr-2 text-accent-caramel group-hover:text-accent-honey transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18.06 23H5.94C5.28 23 4.74 22.46 4.74 21.8V20.74C4.74 20.08 5.28 19.54 5.94 19.54H18.06C18.72 19.54 19.26 20.08 19.26 20.74V21.8C19.26 22.46 18.72 23 18.06 23M12 17C8.69 17 6 14.31 6 11S8.69 5 12 5 18 7.69 18 11 15.31 17 12 17Z"/>
                 </svg>
-                Repostería Tradicional
+                Mesas dulces
               </a>
             </li>
             <li>
@@ -84,7 +74,7 @@
                 <svg class="w-4 h-4 mr-2 text-accent-caramel group-hover:text-accent-honey transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
                 </svg>
-                Pan Artesano
+                Innovación repostera
               </a>
             </li>
             <li>

@@ -5,21 +5,21 @@ export default [
   {
     path: '',
     loadComponent: () => import('../shared/pages/home/home.component'),
-    title: 'Home - Tu Tienda Online'
+    title: 'Home - Marilo\'s Bakery'
   },
   
   // Lista de productos
   {
-    path: 'productos',
+    path: 'reposteria',
     loadComponent: () => import('./pages/products/products.component'),
-    title: 'Productos - Tu Tienda Online'
+    title: 'Productos - Repostería Casera'
   },
   
   // Detalle de producto - DEBE COINCIDIR CON SERVER ROUTES
   {
-    path: 'producto/:slug',
+    path: 'reposteria/:slug',
     loadComponent: () => import('./pages/product/product.component'),
-    title: 'Producto - Tu Tienda Online'
+    title: 'Pasteries - Tus dulces favoritos'
   },
   
 //   // Página de contacto

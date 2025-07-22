@@ -23,7 +23,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()), // SISTEMA DE RUTAS DEL CLIENTE
     provideClientHydration(),
-    provideServerRendering(),
     provideHttpClient(withInterceptors([authInterceptor]), withFetch()),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),

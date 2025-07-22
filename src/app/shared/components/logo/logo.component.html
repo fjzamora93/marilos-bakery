@@ -1,0 +1,31 @@
+<!-- Logo Normal -->
+ @if (!isNegative){
+<div 
+  [ngClass]="sizeClasses + ' rounded-2xl bg-gradient-to-br from-bakery-cream to-sweet-vanilla border-4 border-bakery-gold shadow-bakery flex items-center justify-center relative overflow-hidden'">
+ <div class="absolute inset-0 bg-gradient-to-br from-accent-caramel/20 to-bakery-gold/20"></div>
+  <svg 
+    class="relative z-10 text-bakery-deep" 
+    [style.width.px]="iconSize * 4" 
+    [style.height.px]="iconSize * 4"
+    fill="currentColor" 
+    viewBox="0 0 24 24">
+    <path d="M12 2C10.34 2 9 3.34 9 5H8C6.9 5 6 5.9 6 7C6 7.35 6.07 7.69 6.2 8H5C4.45 8 4 8.45 4 9C4 9.55 4.45 10 5 10H19C19.55 10 20 9.55 20 9C20 8.45 19.55 8 19 8H17.8C17.93 7.69 18 7.35 18 7C18 5.9 17.1 5 16 5H15C15 3.34 13.66 2 12 2ZM5 12L6.6 20.2C6.79 21.16 7.61 22 8.6 22H15.4C16.39 22 17.21 21.16 17.4 20.2L19 12H5Z"/>
+  </svg>
+</div>
+} @else {
+
+
+<!-- Logo Negativo -->
+<div 
+  [ngClass]="sizeClasses + ' rounded-2xl bg-gradient-to-br from-bakery-cream to-sweet-vanilla border-4 border-bakery-gold shadow-bakery flex items-center justify-center relative overflow-hidden'">
+ <div class="absolute inset-0 bg-gradient-to-br from-bakery-gold/30 to-accent-caramel/30"></div>
+  <svg 
+    class="relative z-10 text-bakery-cream" 
+    [style.width.px]="iconSize * 4" 
+    [style.height.px]="iconSize * 4"
+    fill="currentColor" 
+    viewBox="0 0 24 24">
+    <path d="M12 2C10.34 2 9 3.34 9 5H8C6.9 5 6 5.9 6 7C6 7.35 6.07 7.69 6.2 8H5C4.45 8 4 8.45 4 9C4 9.55 4.45 10 5 10H19C19.55 10 20 9.55 20 9C20 8.45 19.55 8 19 8H17.8C17.93 7.69 18 7.35 18 7C18 5.9 17.1 5 16 5H15C15 3.34 13.66 2 12 2ZM5 12L6.6 20.2C6.79 21.16 7.61 22 8.6 22H15.4C16.39 22 17.21 21.16 17.4 20.2L19 12H5Z"/>
+  </svg>
+</div>
+}
