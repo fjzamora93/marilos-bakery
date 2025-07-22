@@ -1,3 +1,16 @@
+# Generación del SSR
+
+```bash
+# Poner a correrlo
+npm run serve:ssr:marilos-bakery
+
+# Generarlo con SSR
+ng build --configuration production
+```
+
+
+
+
 # SeoProject
 
 Este proyecto utiliza SSR para optimizar el SEO con el siguiente flujo:

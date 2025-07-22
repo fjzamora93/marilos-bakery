@@ -1,5 +1,5 @@
-<!-- Top Bar con diseño moderno usando solo Tailwind -->
-<nav class="bg-gradient-to-r from-gray-900 via-black to-gray-900 shadow-lg backdrop-blur-sm">
+<!-- Top Bar - Marilo's Bakery -->
+<nav class="bg-gradient-to-r from-bakery-cream via-sweet-vanilla to-bakery-warm shadow-warm backdrop-blur-sm border-b border-bakery-gold/20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       
@@ -8,7 +8,7 @@
         <!-- Botón Hamburguesa (Solo visible cuando autenticado) -->
         @if (isAuthenticated) {
           <button 
-            class="group inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-800/50 border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200"
+            class="group inline-flex items-center justify-center w-10 h-10 rounded-lg bg-bakery-gold/20 border border-bakery-gold/30 text-bakery-deep hover:text-accent-caramel hover:bg-bakery-gold/30 hover:border-accent-caramel focus:outline-none focus:ring-2 focus:ring-accent-caramel focus:ring-offset-2 focus:ring-offset-bakery-cream transition-all duration-200"
             type="button" 
             (click)="openSidebar()"
             aria-label="Abrir menú">
@@ -21,33 +21,56 @@
         <!-- Logo + Texto -->
         <a href="/" class="hidden lg:flex items-center space-x-3 group">
           <div class="relative">
-              <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center ring-2 ring-white/20">
-                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-            <div class="absolute -top-1 -right-1 h-3 w-3 bg-green-500 rounded-full animate-pulse"></div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-accent-caramel to-bakery-gold flex items-center justify-center ring-2 ring-bakery-gold/30 group-hover:ring-accent-caramel transition-all duration-300">
+              <!-- Icono de cupcake -->
+              <svg class="w-5 h-5 text-bakery-cream" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C10.89 2 10 2.89 10 4V5H8C6.89 5 6 5.89 6 7V8C4.89 8 4 8.89 4 10V18C4 19.11 4.89 20 6 20H18C19.11 20 20 19.11 20 18V10C20 8.89 19.11 8 18 8V7C18 5.89 17.11 5 16 5H14V4C14 2.89 13.11 2 12 2M12 4C12 4 12 4 12 4V5H12V4M8 7H16V8H8V7M6 10H18V18H6V10Z"/>
+              </svg>
+            </div>
+            <div class="absolute -top-1 -right-1 h-3 w-3 bg-accent-strawberry rounded-full animate-pulse"></div>
           </div>
-          <span class=" text-white font-bold text-lg bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Template SEO project
-          </span>
+          <div class="flex flex-col">
+            <span class="text-bakery-deep font-elegant font-bold text-lg leading-none">
+              Marilo's
+            </span>
+            <span class="text-accent-caramel font-medium text-sm leading-none">
+              Bakery
+            </span>
+          </div>
         </a>
       </div>
 
       <!-- Navegación Central (Solo Desktop) -->
       <div class="hidden lg:flex items-center space-x-1">
        
-        <a href="/productos" class="text-gray-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-800/50 relative group">
-          <span class="relative z-10">Productos</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+        <a href="/productos" class="text-bakery-deep hover:text-accent-caramel px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-sweet-peach/30 relative group">
+          <span class="relative z-10 flex items-center space-x-1">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
+            </svg>
+            <span>Dulces</span>
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-accent-strawberry/10 to-sweet-pink/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
         </a>
-        <a href="/ofertas" class="text-gray-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-800/50 relative group">
-          <span class="relative z-10">Ofertas</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-red-600/20 to-pink-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+        
+        <a href="/ofertas" class="text-bakery-deep hover:text-accent-caramel px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-sweet-peach/30 relative group">
+          <span class="relative z-10 flex items-center space-x-1">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9.5 3L8 4.5l2.5 2.5L8 9.5L9.5 11l2.5-2.5L14.5 11L16 9.5L13.5 7L16 4.5L14.5 3L12 5.5L9.5 3Z"/>
+            </svg>
+            <span>Ofertas</span>
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-accent-cherry/10 to-accent-strawberry/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
         </a>
-        <a href="/contacto" class="text-gray-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-gray-800/50 relative group">
-          <span class="relative z-10">Contacto</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-green-600/20 to-teal-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+        
+        <a href="/contacto" class="text-bakery-deep hover:text-accent-caramel px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-sweet-peach/30 relative group">
+          <span class="relative z-10 flex items-center space-x-1">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            </svg>
+            <span>Visítanos</span>
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-accent-honey/10 to-bakery-gold/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
         </a>
       </div>
 
@@ -56,13 +79,13 @@
         @if (!isAuthenticated) {
           
           <button 
-            class="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            class="group relative overflow-hidden bg-gradient-to-r from-accent-caramel to-bakery-gold text-bakery-cream px-6 py-2.5 rounded-full font-medium text-sm hover:from-bakery-gold hover:to-accent-caramel transform hover:scale-105 transition-all duration-300 shadow-warm hover:shadow-bakery focus:outline-none focus:ring-2 focus:ring-accent-caramel focus:ring-offset-2 focus:ring-offset-bakery-cream"
             (click)="openLoginModal()">
             <span class="relative z-10 flex items-center space-x-2">
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
-              <span>Iniciar Sesión</span>
+              <span>Acceder</span>
             </span>
             <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
           </button>
@@ -72,23 +95,23 @@
             <!-- Avatar y Saludo -->
             <div class="flex items-center space-x-3">
               <div class="relative group">
-                <div class="h-9 w-9 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center ring-2 ring-white/20 group-hover:ring-white/40 transition-all duration-300">
-                  <span class="text-white font-semibold text-sm">
+                <div class="h-9 w-9 rounded-full bg-gradient-to-r from-accent-caramel to-bakery-gold flex items-center justify-center ring-2 ring-bakery-gold/30 group-hover:ring-accent-caramel transition-all duration-300">
+                  <span class="text-bakery-cream font-semibold text-sm">
                     {{ currentUser?.email ? (currentUser!.email!.split("@")[0].charAt(0).toUpperCase()) : 'U' }}
                   </span>
                 </div>
-                <div class="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full border-2 border-black animate-pulse"></div>
+                <div class="absolute -bottom-1 -right-1 h-3 w-3 bg-accent-strawberry rounded-full border-2 border-bakery-cream animate-pulse"></div>
               </div>
               <div class="hidden sm:block">
-                <span class="text-gray-300 text-sm font-medium">
-                  ¡Hola, {{ currentUser?.email ? (currentUser!.email!.split("@")[0]) : 'Usuario' }}!
+                <span class="text-bakery-deep text-sm font-medium">
+                  ¡Hola, {{ currentUser?.email ? (currentUser!.email!.split("@")[0]) : 'Chef' }}!
                 </span>
               </div>
             </div>
             
             <!-- Botón Logout -->
             <button 
-              class="group relative overflow-hidden bg-gray-800 text-gray-300 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-700 hover:text-white transform hover:scale-105 transition-all duration-300 border border-gray-600 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+              class="group relative overflow-hidden bg-neutral-200 text-bakery-deep px-4 py-2 rounded-full text-sm font-medium hover:bg-neutral-300 hover:text-accent-caramel transform hover:scale-105 transition-all duration-300 border border-bakery-gold/30 hover:border-accent-caramel focus:outline-none focus:ring-2 focus:ring-accent-caramel focus:ring-offset-2 focus:ring-offset-bakery-cream"
               (click)="onLogout()">
               <span class="flex items-center space-x-2">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -107,17 +130,17 @@
           <button 
             (click)="changeLanguage('es')"
             [class]="currentLanguage === 'es' ? 
-              'bg-blue-600 text-white' : 
-              'bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700'"
-            class="px-2 py-1 rounded text-xs font-medium transition-all duration-200">
+              'bg-accent-caramel text-bakery-cream shadow-warm' : 
+              'bg-neutral-200 text-bakery-deep hover:text-accent-caramel hover:bg-neutral-300'"
+            class="px-2 py-1 rounded text-xs font-medium transition-all duration-200 border border-bakery-gold/20">
             ES
           </button>
           <button 
             (click)="changeLanguage('en')"
             [class]="currentLanguage === 'en' ? 
-              'bg-blue-600 text-white' : 
-              'bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700'"
-            class="px-2 py-1 rounded text-xs font-medium transition-all duration-200">
+              'bg-accent-caramel text-bakery-cream shadow-warm' : 
+              'bg-neutral-200 text-bakery-deep hover:text-accent-caramel hover:bg-neutral-300'"
+            class="px-2 py-1 rounded text-xs font-medium transition-all duration-200 border border-bakery-gold/20">
             EN
           </button>
         </div>

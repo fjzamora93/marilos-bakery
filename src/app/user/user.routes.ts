@@ -7,7 +7,9 @@ export default [
   {
     path: 'dashboard',
     loadComponent: () => import('./pages/dashboard/dashboard.component'),
-    title: 'Panel de administración'
+    title: 'Panel de Usuario',
+    data: { prerender: false } 
+
   },
   
   
@@ -15,7 +17,9 @@ export default [
   {
     path: 'profile/:id',
     loadComponent: () => import('./pages/profile/profile.component'),
-    title: 'Perfil de administrador'
+    title: 'Perfil de usuario',
+    data: { prerender: false } 
+
   },
   
 
