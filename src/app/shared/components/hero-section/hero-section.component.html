@@ -1,42 +1,28 @@
  <!-- Hero Section - Diseño Split Screen -->
-  <section class="relative min-h-screen flex items-center">
-    <!-- Decorative background elements -->
-    <div class="absolute inset-0 bg-gradient-to-r from-sweet-peach/10 to-sweet-pink/10"></div>
+  <section class="relative py-24 flex items-center">
     
-    <!-- Floating bakery elements -->
-    <div class="absolute top-20 right-20 opacity-20 animate-pulse">
-      <svg class="w-32 h-32 text-bakery-gold" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2C10.89 2 10 2.89 10 4V5H8C6.89 5 6 5.89 6 7V8C4.89 8 4 8.89 4 10V18C4 19.11 4.89 20 6 20H18C19.11 20 20 19.11 20 18V10C20 8.89 19.11 8 18 8V7C18 5.89 17.11 5 16 5H14V4C14 2.89 13.11 2 12 2Z"/>
-      </svg>
-    </div>
   
-    
+  
+    <app-floating-button></app-floating-button>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-10">
         
         <!-- Contenido de texto (izquierda) -->
         <div class="space-y-8">
-          <!-- Nuevo logo de panadería - Concepto vintage -->
           <div class="flex items-center space-x-4 mb-8">
+
+            <!-- Marco vintage del logo -->
             <div class="relative group">
-              <!-- Marco vintage del logo -->
-              <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-bakery-cream to-sweet-vanilla border-4 border-bakery-gold shadow-bakery group-hover:shadow-sweet transition-all duration-300 flex items-center justify-center relative overflow-hidden">
-                <!-- Patrón de fondo -->
+              <!-- Cuadro con marco y fondo -->
+              <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-bakery-cream to-sweet-vanilla border-4 border-bakery-gold shadow-bakery flex items-center justify-center relative overflow-hidden">
+                <!-- Fondo decorativo opcional -->
                 <div class="absolute inset-0 bg-gradient-to-br from-accent-caramel/20 to-bakery-gold/20"></div>
-                <!-- Letras iniciales estilizadas -->
-                <div class="relative z-10 text-center">
-                  <div class="text-2xl font-elegant font-bold text-bakery-deep leading-none">M</div>
-                  <div class="text-xs font-script text-accent-caramel leading-none">B</div>
-                </div>
-                <!-- Elementos decorativos -->
-                <div class="absolute top-1 right-1 w-2 h-2 bg-accent-strawberry rounded-full"></div>
-                <div class="absolute bottom-1 left-1 w-1.5 h-1.5 bg-accent-honey rounded-full"></div>
-              </div>
-              <!-- Etiqueta vintage -->
-              <div class="absolute -bottom-2 -right-3 bg-accent-caramel text-bakery-cream text-xs px-2 py-1 rounded-full font-script transform rotate-12 shadow-sm">
-                Est. 1999
+                <svg class="relative z-10 w-11 h-11 text-bakery-deep" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C10.34 2 9 3.34 9 5H8C6.9 5 6 5.9 6 7C6 7.35 6.07 7.69 6.2 8H5C4.45 8 4 8.45 4 9C4 9.55 4.45 10 5 10H19C19.55 10 20 9.55 20 9C20 8.45 19.55 8 19 8H17.8C17.93 7.69 18 7.35 18 7C18 5.9 17.1 5 16 5H15C15 3.34 13.66 2 12 2ZM5 12L6.6 20.2C6.79 21.16 7.61 22 8.6 22H15.4C16.39 22 17.21 21.16 17.4 20.2L19 12H5Z"/>
+                </svg>
               </div>
             </div>
+
             
             <div class="flex flex-col">
               <h1 class="text-4xl md:text-6xl font-elegant font-bold text-bakery-deep leading-none">
@@ -57,7 +43,7 @@
             </h2>
             
             <p class="text-lg md:text-xl text-bakery-brown max-w-xl leading-relaxed font-light">
-              Desde 1999, creamos momentos especiales con repostería artesanal. 
+              Desde 2015, creamos momentos especiales con repostería casera. 
               Cada dulce es una obra de arte hecha con amor, tradición familiar y los mejores ingredientes naturales.
             </p>
           </div>
@@ -70,7 +56,7 @@
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
                 </svg>
-                Descubre Nuestros Dulces
+                Descubre la experiencia
               </span>
               <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
             </a>
@@ -80,7 +66,7 @@
               <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
               </svg>
-              Visita Nuestro Obrador
+              Visítanos
             </a>
           </div>
           
@@ -107,7 +93,7 @@
           <div class="relative z-10 group">
             <div class="relative overflow-hidden rounded-3xl shadow-bakery group-hover:shadow-sweet transition-all duration-500">
               <img 
-                src="/img/tarta-1.png" 
+                src="img/wallpaper/wallpaper_1.jpg" 
                 alt="Tarta artesanal de Marilo's Bakery"
                 class="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-500">
               <!-- Overlay con información -->
@@ -128,14 +114,14 @@
           <!-- Imágenes secundarias flotantes -->
           <div class="absolute -top-6 -left-6 w-32 h-32 rounded-2xl overflow-hidden shadow-sweet opacity-80 hover:opacity-100 transition-opacity duration-300 z-20">
             <img 
-              src="/img/cupcake-1.png" 
+              src="img/cookies/cookies.jpg" 
               alt="Cupcakes artesanales"
               class="w-full h-full object-cover">
           </div>
           
           <div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-xl overflow-hidden shadow-sweet opacity-70 hover:opacity-100 transition-opacity duration-300 z-20">
             <img 
-              src="/img/donut-1.png" 
+              src="img/cookies/cookies.jpg" 
               alt="Donuts caseros"
               class="w-full h-full object-cover">
           </div>
