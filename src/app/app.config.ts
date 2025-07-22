@@ -8,7 +8,8 @@ import { provideHttpClient, withInterceptors, withFetch, HttpInterceptorFn } fro
 
 import { routes } from '../core/app.routes';
 import { environment } from '../environments/environment';
-import { provideTranslate } from '../core/translate-config';
+import { provideTranslate } from '../core/translation/translate-config';
+import { provideClientHydration } from '@angular/platform-browser';
 
 // Crear un interceptor de autenticación básico
 const authInterceptor: HttpInterceptorFn = (req, next) => {
@@ -20,11 +21,13 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()), // SISTEMA DE RUTAS DEL CLIENTE
+    provideClientHydration(),
+
     provideHttpClient(withInterceptors([authInterceptor]), withFetch()),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    provideTranslate(),
+    provideTranslate(), 
   ],
 };

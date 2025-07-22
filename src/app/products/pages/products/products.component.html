@@ -1,13 +1,13 @@
 <div class="products-container">
   <div class="products-header">
-    <h1>Nuestros Productos</h1>
-    <p>Descubre nuestra amplia gama de productos de calidad</p>
+    <h1>{{ 'PRODUCTS.TITLE' | translate }}</h1>
+    <p>{{ 'PRODUCTS.DESCRIPTION' | translate }}</p>
   </div>
 
   <div class="products-grid" *ngIf="!loading && !error && products.length > 0">
     <div class="product-card" *ngFor="let product of products">
       <a [routerLink]="['/producto', product.slug]" class="product-link">
-        <img 
+        <img  
           [src]="product.imageUrl" 
           [alt]="product.name"
           class="product-image"

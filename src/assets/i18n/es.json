@@ -3,5 +3,10 @@
     "TITLE": "Inicio",
     "WELCOME_MESSAGE": "Bienvenido a nuestra tienda",
     "SUBTITLE": "Los mejores productos te esperan"
+  },
+
+  "PRODUCTS": {
+    "TITLE": "Productos",
+    "DESCRIPTION": "Aquí puedes encontrar una variedad de productos"
   }
 }

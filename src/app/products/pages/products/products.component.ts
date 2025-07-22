@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product';
 import { SeoService } from '../../services/seo.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })

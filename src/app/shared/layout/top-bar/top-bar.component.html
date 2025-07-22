@@ -99,6 +99,27 @@
           </div>
         }
       </div>
+
+
+        <!-- Selector de idioma -->
+        <div class="flex gap-1">
+          <button 
+            (click)="changeLanguage('es')"
+            [class]="currentLanguage === 'es' ? 
+              'bg-blue-600 text-white' : 
+              'bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700'"
+            class="px-2 py-1 rounded text-xs font-medium transition-all duration-200">
+            ES
+          </button>
+          <button 
+            (click)="changeLanguage('en')"
+            [class]="currentLanguage === 'en' ? 
+              'bg-blue-600 text-white' : 
+              'bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700'"
+            class="px-2 py-1 rounded text-xs font-medium transition-all duration-200">
+            EN
+          </button>
+        </div>
     </div>
   </div>
 </nav>

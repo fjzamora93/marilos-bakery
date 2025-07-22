@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SeoService } from './products/services/seo.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'core/translation/language.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private seoService: SeoService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private languageService: LanguageService
+
   ) {
     console.log('🚀 AppComponent constructor called');
     
@@ -26,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('🚀 AppComponent ngOnInit called');
+    console.log('App initialized with language:', this.languageService.getCurrentLanguage());
     this.seoService.updateMetaTags({
       title: 'Mi Aplicación Angular con SEO',
       description: 'Aplicación Angular optimizada para SEO con Server-Side Rendering',
