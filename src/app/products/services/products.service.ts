@@ -5,6 +5,7 @@ import { Observable, from, of, forkJoin } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { Product } from '@products/models/product';
 import { FIREBASE_MAIN_COLLECTION } from '@app/shared/constants/firebase.constants';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -90,7 +91,7 @@ export class ProductsService {
     }
   }
 
-  getProductsByCategory(category: string): Observable<Product[]> {
+  getProductsByCategory(category: Category): Observable<Product[]> {
     if (!this.isBrowser) {
       return of([]);
     }

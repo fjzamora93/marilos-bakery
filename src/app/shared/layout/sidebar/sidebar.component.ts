@@ -2,11 +2,14 @@ import { Component, Input, Output, EventEmitter, Inject, OnInit, OnDestroy, PLAT
 import { Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { User } from '@angular/fire/auth';
+import { LogoComponent } from "@app/shared/components/logo/logo.component";
+import { MenuOption } from '@app/shared/helper/menu-option';
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LogoComponent, MatIconModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
@@ -53,10 +56,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   // Método para navegar y cerrar sidebar
   navigateAndClose(route: string) {
     if (!this.isBrowser) return;
-    
+    console.log(`Navigating to ${route}`);
     this.close();
-    
-    // Navegar después de un pequeño delay para que la animación se complete
     setTimeout(() => {
       this.router.navigate([route]);
     }, 200);
@@ -68,4 +69,69 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.close();
     }
   }
+
+    menuOptions: MenuOption[] = [
+    // Opciones públicas
+    {
+      text: 'Inicio',
+      label: 'public',
+      icon: 'home',
+      route: '/',
+      requiresAuth: false,
+    },
+    {
+      text: 'Carta completa',
+      label: 'public',
+      icon: 'cake',
+      route: '/reposteria',
+      requiresAuth: false,
+    },
+    {
+      text: 'Nuestros dulces',
+      label: 'public',
+      icon: 'cake',
+      route: '/reposteria/?category=tartas',
+      requiresAuth: false,
+    },
+    {
+      text: 'Repostería saludable',
+      label: 'public',
+      icon: 'favorite',
+      route: '/reposteria?category=healthy',
+      requiresAuth: false,
+    },
+    {
+      text: 'Tartas',
+      label: 'public',
+      icon: 'bakery_dining',
+      route: '/reposteria?category=tartas',
+      requiresAuth: false,
+    },
+    {
+      text: 'Experimentación',
+      label: 'public',
+      icon: 'science',
+      route: '/reposteria?category=experimental',
+      requiresAuth: false,
+    },
+
+    // Opción de administración (requiere autenticación)
+    {
+      text: 'Panel de administración',
+      label: 'admin',
+      icon: 'admin_panel_settings',
+      route: '/admin',
+      requiresAuth: false,
+    },
+
+    // Opción informativa
+    {
+      text: 'Política de privacidad',
+      label: 'info',
+      icon: 'policy',
+      route: '/privacy-policy',
+      requiresAuth: false,
+    }
+  ];
+
 }

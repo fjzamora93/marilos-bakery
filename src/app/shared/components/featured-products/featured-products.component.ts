@@ -27,7 +27,7 @@ export class FeaturedProductsComponent {
       body: 'Desde clásicos bizcochos hasta tartas innovadoras. Perfectas para celebraciones especiales y momentos únicos.',
       badge: 'popular',
       icon: 'cake',
-      url: '/reposteria'
+      url: 'reposteria?category=tartas'
     },
     {
       image: 'img/cookies/cookies.jpg',
@@ -36,7 +36,8 @@ export class FeaturedProductsComponent {
       body: 'Deliciosas combinaciones de sabores y texturas. Una combinación de dulces perfectas para acompañar todo tipo de eventos.',
       badge: 'a bocaditos',
       icon: 'star',
-      url: '/mesas-dulces'
+      url: '/reposteria?category=dulces'
+
     },
     {
       image: '/img/glutenfree/cake_cheese.jpg',
@@ -45,7 +46,8 @@ export class FeaturedProductsComponent {
       body: 'Porque también nos gusta salirnos del modelo y probar nuevas experiencias. Atrévete a probar nuestras creaciones más atrevidas.',
       badge: 'experimental',
       icon: 'cookie',
-      url: '/innovaciones'
+      url: '/reposteria?category=experimental'
+
     }
   ];
 }

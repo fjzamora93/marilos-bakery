@@ -15,6 +15,7 @@ export default [
     title: 'Productos - Repostería Casera'
   },
   
+  
   // Detalle de producto - DEBE COINCIDIR CON SERVER ROUTES
   {
     path: 'reposteria/:slug',

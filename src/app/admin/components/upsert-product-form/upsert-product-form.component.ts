@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { AdminProductsService } from '../../services/admin-product.service';
 import { Product } from '../../../products/models/product';
 import { AuthService } from '../../../../core/auth/auth.service';
+import { Category } from '@app/products/models/category';
 
 @Component({
   selector: 'app-upsert-product-form',
@@ -115,7 +116,7 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
         description: formData.description,
         price: Number(formData.price),
         imageUrl: formData.imageUrl,
-        category: 'General', 
+        category: Category.SWEETS, 
         slug: this.generateSlug(formData.name),
         seoTitle: formData.name,
         seoDescription: formData.description,
