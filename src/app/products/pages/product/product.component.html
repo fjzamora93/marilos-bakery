@@ -1,24 +1,29 @@
-<div class="product-container" *ngIf="product && !loading && !error">
-  <div class="product-header">
-    <img 
-      [src]="product.imageUrl" 
-      [alt]="product.name"
-      class="product-image"
-      loading="lazy"
-    />
-    <div class="product-info">
-      <h1 class="product-title">{{ product.name }}</h1>
-      <p class="product-category">{{ product.category }}</p>
-      <p class="product-price">{{ product.price | currency:'EUR' }}</p>
-      <p class="product-description">{{ product.description }}</p>
+<!-- Contenedor principal con márgenes superior e inferior -->
+<div class="min-h-screen py-12 md:py-20 lg:py-20">
+  
+  <div class="product-container" *ngIf="product && !loading && !error">
+    <div class="product-header">
+      <img 
+        [src]="product.imageUrl" 
+        [alt]="product.name"
+        class="product-image"
+        loading="lazy"
+      />
+      <div class="product-info">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <p class="product-category">{{ product.category }}</p>
+        <p class="product-price">{{ product.price | currency:'EUR' }}</p>
+        <p class="product-description">{{ product.description }}</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="loading" *ngIf="loading">
-  <p>Cargando producto...</p>
-</div>
+  <div class="loading" *ngIf="loading">
+    <p>Cargando producto...</p>
+  </div>
 
-<div class="error" *ngIf="error">
-  <p>{{ error }}</p>
+  <div class="error" *ngIf="error">
+    <p>{{ error }}</p>
+  </div>
+
 </div>
