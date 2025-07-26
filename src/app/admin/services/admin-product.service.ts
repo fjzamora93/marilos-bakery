@@ -17,17 +17,24 @@ import {
 import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { catchError, map, switchMap, tap, filter } from 'rxjs/operators';
 import { Auth, authState, User } from '@angular/fire/auth';
+import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage'; // ✅ Importar Storage de Firebase
 import { Product } from '@app/products/models/product';
-import { FIREBASE_MAIN_COLLECTION } from '@app/shared/constants/firebase.constants';
+import { FIREBASE_MAIN_COLLECTION, FIREBASE_STORAGE_FOLDER } from '@app/shared/constants/firebase.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminProductsService {
   private firestore = inject(Firestore);
+  private fireStorage = inject(Storage);
+
   private platformId = inject(PLATFORM_ID);
+
+
   private auth = inject(Auth);
   private productsCollection = collection(this.firestore, FIREBASE_MAIN_COLLECTION);
+
+
   private get isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);
   }
@@ -81,9 +88,16 @@ export class AdminProductsService {
     }
   }
 
-  createProduct(product: Product): Observable<DocumentReference> {
-    return from(addDoc(this.productsCollection, product)).pipe(
-      tap(() => this.reloadProducts()), // refrescar lista
+  createProduct(product: Product, imageFile: File): Observable<DocumentReference> {
+    return from(this.uploadProductImage(imageFile)).pipe(
+      switchMap(downloadURL => {
+        const productWithImage: Product = {
+          ...product,
+          imageUrl: downloadURL
+        };
+        return from(addDoc(this.productsCollection, productWithImage));
+      }),
+      tap(() => this.reloadProducts()),
       catchError(error => {
         console.error('Error creating product:', error);
         throw error;
@@ -91,16 +105,36 @@ export class AdminProductsService {
     );
   }
 
-  updateProduct(productId: string, data: Partial<Product>): Observable<void> {
-    const productRef = doc(this.firestore, `${FIREBASE_MAIN_COLLECTION}/${productId}`);
-    return from(updateDoc(productRef, data)).pipe(
-      tap(() => this.reloadProducts()), // refrescar lista
-      catchError(error => {
-        console.error('Error updating product:', error);
-        throw error;
-      })
-    );
+  updateProduct(productId: string, data: Partial<Product>, imageFile?: File | null): Observable<void> {
+  const update$ = imageFile
+    ? from(this.uploadProductImage(imageFile)).pipe(
+        switchMap(downloadURL => {
+          const dataWithImage = { ...data, imageUrl: downloadURL };
+          const productRef = doc(this.firestore, `${FIREBASE_MAIN_COLLECTION}/${productId}`);
+          return from(updateDoc(productRef, dataWithImage));
+        })
+      )
+    : from(updateDoc(doc(this.firestore, `${FIREBASE_MAIN_COLLECTION}/${productId}`), data));
+
+  return update$.pipe(
+    tap(() => this.reloadProducts()),
+    catchError(error => {
+      console.error('Error updating product:', error);
+      throw error;
+    })
+  );
+}
+
+    // subida de ARCHIVOS A FIREBASE
+  private async uploadProductImage(file: File): Promise<string> {
+    const name = file.name;
+    const storagePath = `${FIREBASE_STORAGE_FOLDER}/${name}`;
+    const storageRef = ref(this.fireStorage, storagePath);
+
+    await uploadBytes(storageRef, file);
+    return await getDownloadURL(storageRef);
   }
+
 
   deleteProduct(productId: string): Observable<void> {
     const productRef = doc(this.firestore, `${FIREBASE_MAIN_COLLECTION}/${productId}`);
@@ -135,5 +169,8 @@ export class AdminProductsService {
       })
     );
   }
+
+  
+
 
 }

@@ -23,6 +23,8 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
   productForm: FormGroup;
   isLoading = false;
   isEditMode = false;
+  selectedImageFile: File | null = null;
+  imagePreview: string | null = null;
   private subscription = new Subscription();
 
   constructor(
@@ -34,7 +36,6 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(2)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       price: ['', [Validators.required, Validators.min(0)]],
-      imageUrl: ['', [Validators.required, Validators.min(0)]]
     });
   }
 
@@ -63,6 +64,8 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
               price: product.price,
               imageUrl: product.imageUrl
             });
+            this.imagePreview = product.imageUrl || null; 
+            this.selectedImageFile = null; 
           }
           this.isLoading = false;
         },
@@ -74,9 +77,29 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
     );
   }
 
-  onSubmit() {
+  onImageSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.selectedImageFile = fileInput.files[0];
+
+      // Mostrar vista previa
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(this.selectedImageFile);
+    }
+  }
+
+ onSubmit() {
     if (this.productForm.invalid) {
       this.markFormGroupTouched();
+      return;
+    }
+
+    if (!this.selectedImageFile && !this.isEditMode) {
+      console.error('Debes seleccionar una imagen.');
+      // Puedes mostrar un mensaje al usuario aquí
       return;
     }
 
@@ -90,15 +113,17 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
     const formData = this.productForm.value;
 
     if (this.isEditMode && this.productId) {
-      // Actualizar producto existente
       this.subscription.add(
-        this.adminProductsService.updateProduct(this.productId, {
-          name: formData.name,
-          description: formData.description,
-          price: Number(formData.price),
-          imageUrl: formData.imageUrl,
-          updatedAt: new Date()
-        }).subscribe({
+        this.adminProductsService.updateProduct(
+          this.productId,
+          {
+            name: formData.name,
+            description: formData.description,
+            price: Number(formData.price),
+            updatedAt: new Date()
+          },
+          this.selectedImageFile 
+        ).subscribe({
           next: () => {
             this.productSaved.emit();
             this.isLoading = false;
@@ -115,19 +140,21 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
         name: formData.name,
         description: formData.description,
         price: Number(formData.price),
-        imageUrl: formData.imageUrl,
-        category: Category.SWEETS, 
+        category: Category.SWEETS,
         slug: this.generateSlug(formData.name),
         seoTitle: formData.name,
         seoDescription: formData.description,
         seoKeywords: formData.name.split(' ').join(', '),
         createdAt: new Date(),
         updatedAt: new Date(),
-        userUid: currentUser.uid // Agregar el UID del usuario
+        userUid: currentUser.uid
       };
 
       this.subscription.add(
-        this.adminProductsService.createProduct(newProduct as Product).subscribe({
+        this.adminProductsService.createProduct(
+          newProduct as Product,
+          this.selectedImageFile!
+        ).subscribe({
           next: () => {
             this.productSaved.emit();
             this.isLoading = false;
@@ -140,6 +167,7 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
       );
     }
   }
+
 
   private generateSlug(name: string): string {
     return name
@@ -173,9 +201,7 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
       if (control.errors['min']) {
         return `${fieldName} debe ser mayor a 0`;
       }
-      if (control.errors['pattern']) {
-        return `${fieldName} debe ser una URL válida de imagen`;
-      }
+    
     }
     return '';
   }
