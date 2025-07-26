@@ -86,33 +86,36 @@
             </div>
           </div>
           
-          <!-- Divider -->
-          <div class="mx-6 border-t border-bakery-gold/20"></div>
+          
           
           <!-- Sección: Gestión -->
-          <div class="px-6 mt-4">
-            <h3 class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
-              Gestión
-            </h3>
-            <!-- ADMIN -->
-            <div class="space-y-1">
-              @for (option of menuOptions; track option.label) {
-                @if (option.label === 'admin') {
-                <a 
-                  class="flex items-center px-3 py-2.5 text-bakery-deep hover:text-accent-caramel hover:bg-sweet-peach/30 rounded-lg transition-all duration-200 cursor-pointer group"
-                  [ngClass]="{
-                    'opacity-50 pointer-events-none': option.requiresAuth 
-                  }"
-                  (click)="navigateAndClose(option.route!)">
-                  <div class="flex items-center justify-center w-8 h-8 rounded-lg text-white mr-3 bg-accent-cherry shrink-0">
-                    <mat-icon *ngIf="option.icon" class="!text-base !leading-none !flex !items-center !justify-center">{{ option.icon }}</mat-icon>
-                  </div>
-                  <span class="font-medium">{{ option.text }}</span>
-                </a>
-                }}
+           @if (isAdmin) {
+             <!-- Divider -->
+            <div class="mx-6 border-t border-bakery-gold/20"></div>
+            <div class="px-6 mt-4">
+              <h3 class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
+                Gestión
+              </h3>
+              <!-- ADMIN -->
+              <div class="space-y-1">
+                @for (option of menuOptions; track option.label) {
+                  @if (option.label === 'admin') {
+                  <a 
+                    class="flex items-center px-3 py-2.5 text-bakery-deep hover:text-accent-caramel hover:bg-sweet-peach/30 rounded-lg transition-all duration-200 cursor-pointer group"
+                    [ngClass]="{
+                      'opacity-50 pointer-events-none': option.requiresAuth 
+                    }"
+                    (click)="navigateAndClose(option.route!)">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-lg text-white mr-3 bg-accent-cherry shrink-0">
+                      <mat-icon *ngIf="option.icon" class="!text-base !leading-none !flex !items-center !justify-center">{{ option.icon }}</mat-icon>
+                    </div>
+                    <span class="font-medium">{{ option.text }}</span>
+                  </a>
+                  }}
+              </div>
             </div>
-          </div>
-          
+          } 
+
           <!-- Divider -->
           <div class="mx-6 border-t border-bakery-gold/20"></div>
           

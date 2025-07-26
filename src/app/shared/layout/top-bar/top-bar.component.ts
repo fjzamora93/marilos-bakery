@@ -44,7 +44,6 @@ export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.authSubscription = this.authService.currentUser$.subscribe(user => {
       this.isAuthenticated = !!user;
       this.currentUser = user;
-      console.log('Current user:', this.currentUser);
     });
 
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(

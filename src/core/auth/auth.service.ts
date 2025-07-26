@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, onAuthStateChanged, User, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { Firestore, collection, doc, getDoc, getDocs, query, where } from '@angular/fire/firestore'; // ✅ Importar desde @angular/fire/firestore
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -7,11 +8,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AuthService {
   private auth = inject(Auth);
+  private firestore = inject(Firestore); // ✅ Inyectar con inject()
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$: Observable<User | null> = this.currentUserSubject.asObservable();
   private authInitialized = false;
 
-  constructor() {
+  constructor() { // ✅ Quitar Firestore del constructor
     this.initializeAuth();
   }
 
@@ -121,4 +123,36 @@ export class AuthService {
       }
     });
   }
+
+
+  
+  async isAdmin(): Promise<boolean> {
+    const currentUser: User | null = this.auth.currentUser;
+
+    if (!currentUser) {
+      console.warn('No hay usuario autenticado.');
+      return false;
+    }
+
+    const uid = currentUser.uid;
+    console.log(`Verificando rol para el usuario con UID: ${uid}`);
+
+    try {
+      const roleDocRef = doc(this.firestore, 'roles', uid);
+      const roleDocSnap = await getDoc(roleDocRef);
+
+      if (roleDocSnap.exists()) {
+        const data = roleDocSnap.data();
+        return data?.['rol'] === 'admin';
+      }
+
+      return false;
+    } catch (error) {
+      console.error('Error verificando rol del usuario:', error);
+      return false;
+    }
+  }
+
+
+
 }

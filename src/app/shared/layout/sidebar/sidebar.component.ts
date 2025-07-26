@@ -5,6 +5,8 @@ import { User } from '@angular/fire/auth';
 import { LogoComponent } from "@app/shared/components/logo/logo.component";
 import { MenuOption } from '@app/shared/helper/menu-option';
 import { MatIconModule } from "@angular/material/icon";
+import { Subscription } from 'rxjs';
+import { AuthService } from 'core/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,10 +20,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
   @Input() currentUser: User | null = null;
   @Output() closeSidebar = new EventEmitter<void>();
   
+  isAdmin: boolean = false;
+  private authSubscription?: Subscription;
   private isBrowser: boolean;
+
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
   ) {
@@ -29,11 +35,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Agregar listener para cerrar con ESC
+    this.authSubscription = this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+
+      this.authService.isAdmin().then(isAdmin => {
+        this.isAdmin = isAdmin;
+      });
+    });
+
     if (this.isBrowser) {
       this.document.addEventListener('keydown', this.handleKeydown.bind(this));
     }
   }
+
 
   ngOnDestroy() {
     // Remover event listener
@@ -59,7 +73,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     console.log(`Navigating to ${route}`);
     this.close();
     setTimeout(() => {
-      this.router.navigate([route]);
+      this.router.navigateByUrl(route);
     }, 200);
   }
 
@@ -90,7 +104,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       text: 'Nuestros dulces',
       label: 'public',
       icon: 'cake',
-      route: '/reposteria/?category=tartas',
+      route: '/reposteria?category=tartas',
       requiresAuth: false,
     },
     {
