@@ -31,20 +31,20 @@
           <!-- Mensaje de bienvenida -->
           <div class="space-y-4">
             <h2 class="text-3xl md:text-4xl font-light text-bakery-brown leading-relaxed">
-              <span class="bg-gradient-to-r from-accent-caramel via-bakery-gold to-accent-honey bg-clip-text text-transparent font-handwriting text-4xl md:text-5xl">
-                {{ 'HOME.WELCOME_MESSAGE' | translate }}
+              <span  class="bg-gradient-to-r from-accent-caramel via-bakery-gold to-accent-honey bg-clip-text text-transparent font-handwriting text-4xl md:text-5xl">
+                Repostería casera en Almuñécar
               </span>
             </h2>
-            
+
             <p class="text-lg md:text-xl text-bakery-brown max-w-xl leading-relaxed font-light">
-              Desde 2015, creamos momentos especiales con repostería casera. 
-              Cada dulce es una obra de arte hecha con amor, tradición familiar y los mejores ingredientes naturales.
+              {{ 'HOME_HERO.SUBTITLE' | translate }}
+
             </p>
           </div>
           
           <!-- Botones de acción -->
           <div class="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="/productos" 
+            <a href="/reposteria" 
                class="group relative overflow-hidden bg-gradient-to-r from-accent-caramel to-bakery-gold text-bakery-cream px-8 py-4 rounded-full font-semibold text-lg hover:from-bakery-gold hover:to-accent-caramel transform hover:scale-105 transition-all duration-300 shadow-warm hover:shadow-bakery text-center">
               <span class="relative z-10 flex items-center justify-center">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -55,28 +55,22 @@
               <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
             </a>
             
-            <a href="/contacto" 
-               class="group flex items-center justify-center px-8 py-4 text-bakery-deep font-semibold text-lg hover:text-accent-caramel transition-colors duration-200 border-2 border-bakery-gold hover:border-accent-caramel rounded-full hover:bg-sweet-peach/20">
-              <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              </svg>
-              Visítanos
-            </a>
+         
           </div>
           
           <!-- Estadísticas rápidas -->
           <div class="grid grid-cols-3 gap-6 pt-8">
             <div class="text-center">
-              <div class="text-2xl font-bold text-bakery-deep mb-1">25+</div>
-              <div class="text-sm text-bakery-brown font-light">Años</div>
+              <div class="text-2xl font-bold text-bakery-deep mb-1">15+</div>
+              <div class="text-sm text-bakery-brown font-light">{{ 'HOME_HERO.TAG_1' | translate }}</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-bakery-deep mb-1">100+</div>
-              <div class="text-sm text-bakery-brown font-light">Recetas</div>
+              <div class="text-2xl font-bold text-bakery-deep mb-1">50+</div>
+              <div class="text-sm text-bakery-brown font-light">{{ 'HOME_HERO.TAG_2' | translate }}</div>
             </div>
             <div class="text-center">
               <div class="text-2xl font-bold text-bakery-deep mb-1">1000+</div>
-              <div class="text-sm text-bakery-brown font-light">Clientes</div>
+              <div class="text-sm text-bakery-brown font-light">{{ 'HOME_HERO.TAG_3' | translate }}</div>
             </div>
           </div>
         </div>
