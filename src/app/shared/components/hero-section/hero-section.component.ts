@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { FloatingButtonComponent } from "../floating-button/floating-button.component";
 import { LogoComponent } from "../logo/logo.component";
-
+import '@angular/localize/init';
 @Component({
   standalone: true,
   selector: 'app-hero-section',

@@ -87,7 +87,7 @@
            <!-- Selector de idioma -->
         <div class="flex gap-1">
           <button 
-            (click)="changeLanguage('es')"
+            (click)="localizedPath('es')"
             [class]="currentLanguage === 'es' ? 
               'bg-accent-caramel text-bakery-cream shadow-warm' : 
               'bg-neutral-200 text-bakery-deep hover:text-accent-caramel hover:bg-neutral-300'"
@@ -95,7 +95,7 @@
             ES
           </button>
           <button 
-            (click)="changeLanguage('en')"
+            (click)="localizedPath('en')"
             [class]="currentLanguage === 'en' ? 
               'bg-accent-caramel text-bakery-cream shadow-warm' : 
               'bg-neutral-200 text-bakery-deep hover:text-accent-caramel hover:bg-neutral-300'"

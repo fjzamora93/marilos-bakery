@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, Inject, OnInit, OnDestroy, ViewChild, AfterViewInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { CommonModule, isPlatformBrowser, DOCUMENT, Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { User } from '@angular/fire/auth';
 import { AuthService } from '../../../../core/auth/auth.service';
@@ -31,7 +31,7 @@ export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
+    private location: Location,
     private languageService: LanguageService,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(DOCUMENT) private document: Document
@@ -98,7 +98,16 @@ export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {
     this.closeSidebar(); // Cerrar sidebar al hacer logout
   }
 
+  //! DEPRECTED: USAR EL NUEVO SISTEMA DE TRADUCCIÓN Y QUITAR TODO LO RELACIONADO CON EL ANTERIOR
   changeLanguage(languageCode: string) {
     this.languageService.changeLanguage(languageCode);
+  }
+
+
+  localizedPath(lang: string): string {
+    this.currentLanguage = lang;
+    // Obtiene la ruta actual sin el prefijo de idioma
+    const path = this.location.path().replace(/^\/(es|en)/, '');
+    return `/${lang}${path || '/'}`;
   }
 }

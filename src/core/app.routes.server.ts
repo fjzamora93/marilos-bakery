@@ -6,19 +6,19 @@ export const serverRoutes: ServerRoute[] = [
   // Ruta para productos individuales (debe coincidir con la ruta del cliente)
   {
     path: 'reposteria/:slug',
-    renderMode: RenderMode.Server
+    renderMode: RenderMode.Prerender
   },
   
   // Ruta para lista de productos
   {
     path: 'reposteria',
-    renderMode: RenderMode.Server
+    renderMode: RenderMode.Prerender
   },
 
   // Ruta home
   {
     path: '',
-    renderMode: RenderMode.Server
+    renderMode: RenderMode.Prerender
   },
 
   // Ruta about
