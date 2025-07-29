@@ -3,10 +3,11 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 const langs = ['es', 'en'];
 
 export const serverRoutes: ServerRoute[] = [
-{
-  path: '',
-  renderMode: RenderMode.Prerender
-},
+  // Ruta raíz - redirige al prerender de los idiomas
+  {
+    path: '',
+    renderMode: RenderMode.Prerender,
+  },
 
   // Home
   {
@@ -22,7 +23,7 @@ export const serverRoutes: ServerRoute[] = [
     getPrerenderParams: async () => langs.map(lang => ({ lang }))
   },
 
-  // About > privacy-policy
+  // About > privacy-policy (client-side)
   {
     path: ':lang/about/privacy-policy',
     renderMode: RenderMode.Client,
@@ -35,34 +36,37 @@ export const serverRoutes: ServerRoute[] = [
     getPrerenderParams: async () => langs.map(lang => ({ lang }))
   },
 
-  // Detalle de producto (slugs)
+  // Detalle de producto (slugs) - client-side
   {
     path: ':lang/reposteria/:slug',
     renderMode: RenderMode.Client,
   },
 
-  // Admin
+  // Admin - client-side
   {
     path: ':lang/admin',
     renderMode: RenderMode.Client,
   },
 
-  // User
+  // User - client-side
   {
     path: ':lang/user',
     renderMode: RenderMode.Client,
   },
 
-  // 404
+  // 404 - client-side
   {
     path: ':lang/404',
-    renderMode: RenderMode.Prerender,
-    getPrerenderParams: async () => langs.map(lang => ({ lang }))
+    renderMode: RenderMode.Client,
   },
 
-  // Wildcard (opcional)
+  // Wildcard - client-side
   {
     path: ':lang/**',
     renderMode: RenderMode.Client,
+  },
+  {
+    path: '**',
+    renderMode: RenderMode.Client
   }
 ];
