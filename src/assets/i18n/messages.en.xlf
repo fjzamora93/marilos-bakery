@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="homeFeaturedDescription" datatype="html">
+        <source> Each creation is unique, made with fresh ingredients and lots of love </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/featured-products/featured-products.component.html</context>
+          <context context-type="linenumber">12,16</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="homeHeroTitle" datatype="html">
         <source> Homemade Pastries in Almuñecar </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/components/hero-section/hero-section.component.html</context>
           <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="homeHeroDescription" datatype="html">
+        <source> The best homemade pastries in Almuñecar, made with fresh ingredients and traditional recipes. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/hero-section/hero-section.component.html</context>
+          <context context-type="linenumber">40,42</context>
         </context-group>
       </trans-unit>
     </body>

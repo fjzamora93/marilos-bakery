@@ -7,12 +7,11 @@ import { MenuOption } from '@app/shared/helper/menu-option';
 import { MatIconModule } from "@angular/material/icon";
 import { Subscription } from 'rxjs';
 import { AuthService } from 'core/auth/auth.service';
-import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, LogoComponent, MatIconModule, TranslateModule],
+  imports: [CommonModule, LogoComponent, MatIconModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })

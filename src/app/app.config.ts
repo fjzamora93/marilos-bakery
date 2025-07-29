@@ -8,7 +8,6 @@ import { provideHttpClient, withInterceptors, withFetch, HttpInterceptorFn } fro
 
 import { routes } from '../core/app.routes';
 import { environment } from '../environments/environment';
-import { provideTranslate } from '../core/translation/translate-config';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideServerRendering } from '@angular/platform-server';
 
@@ -28,6 +27,5 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    provideTranslate(), 
   ],
 };

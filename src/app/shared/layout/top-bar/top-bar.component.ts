@@ -6,7 +6,6 @@ import { User } from '@angular/fire/auth';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { LoginComponent } from '../login/login.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from 'core/translation/language.service';
 import { LogoComponent } from "@app/shared/components/logo/logo.component";
 
@@ -15,7 +14,7 @@ import { LogoComponent } from "@app/shared/components/logo/logo.component";
   standalone: true,
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss'],
-  imports: [CommonModule, RouterModule, LoginComponent, SidebarComponent, TranslateModule, LogoComponent]
+  imports: [CommonModule, RouterModule, LoginComponent, SidebarComponent, LogoComponent]
 
 })
 export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -46,11 +45,7 @@ export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentUser = user;
     });
 
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
-      (language) => {
-        this.currentLanguage = language;
-      }
-    );
+    this.currentLanguage = this.languageService.getPreferredLanguage();
   }
 
   ngAfterViewInit() {
@@ -100,7 +95,7 @@ export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   //! DEPRECTED: USAR EL NUEVO SISTEMA DE TRADUCCIÓN Y QUITAR TODO LO RELACIONADO CON EL ANTERIOR
   changeLanguage(languageCode: string) {
-    this.languageService.changeLanguage(languageCode);
+    this.languageService.setPreferredLanguage(languageCode);
   }
 
 

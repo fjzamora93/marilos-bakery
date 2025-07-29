@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { APP_NAME } from '@app/shared/constants/app.constants';
 import { HeroSectionComponent } from "@app/shared/components/hero-section/hero-section.component";
 import { FeaturedProductsComponent } from "@app/shared/components/featured-products/featured-products.component";
@@ -10,7 +9,7 @@ import { FloatingButtonComponent } from "@app/shared/components/floating-button/
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [TranslateModule, HeroSectionComponent, FeaturedProductsComponent, AboutSectionComponent, FloatingButtonComponent],
+  imports: [HeroSectionComponent, FeaturedProductsComponent, AboutSectionComponent, FloatingButtonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

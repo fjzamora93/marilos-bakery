@@ -6,14 +6,13 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product';
 import { SeoService } from '../../services/seo.service';
-import { TranslateModule } from '@ngx-translate/core';
 import { ProductCardComponent } from "@app/products/components/product-card/product-card.component";
 import { Category, stringToCategory } from '@app/products/models/category';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule, ProductCardComponent, FormsModule],
+  imports: [CommonModule, RouterModule, ProductCardComponent, FormsModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   animations: [

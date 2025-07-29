@@ -1,46 +1,38 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LanguageService {
-  private currentLanguageSubject = new BehaviorSubject<string>('es');
-  public currentLanguage$ = this.currentLanguageSubject.asObservable();
+  private supportedLanguages = ['es', 'en'];
+  private defaultLanguage = 'es';
 
-  constructor(
-    private translate: TranslateService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    this.initializeLanguage();
-  }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  private initializeLanguage() {
-    let savedLanguage = 'es'; // Idioma por defecto
-    
-    // Solo acceder a localStorage si estamos en el browser
+  detectBrowserLanguage(): string {
     if (isPlatformBrowser(this.platformId)) {
-      savedLanguage = localStorage.getItem('preferred-language') || 'es';
+      const lang = navigator.language.slice(0, 2).toLowerCase();
+      return this.supportedLanguages.includes(lang) ? lang : this.defaultLanguage;
     }
-    
-    this.translate.setDefaultLang('es');
-    this.translate.use(savedLanguage);
-    this.currentLanguageSubject.next(savedLanguage);
+    return this.defaultLanguage;
   }
 
-  changeLanguage(language: string) {
-    this.translate.use(language);
-    this.currentLanguageSubject.next(language);
-    
-    // Solo guardar en localStorage si estamos en el browser
+  getPreferredLanguage(): string {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('preferred-language', language);
+      return localStorage.getItem('preferred-language') || this.detectBrowserLanguage();
+    }
+    return this.defaultLanguage;
+  }
+
+  setPreferredLanguage(lang: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('preferred-language', lang);
     }
   }
 
-  getCurrentLanguage(): string {
-    return this.currentLanguageSubject.value;
+  getCurrentLanguageFromUrl(path: string): string {
+    const segment = path.split('/')[1];
+    return this.supportedLanguages.includes(segment) ? segment : this.defaultLanguage;
   }
 }

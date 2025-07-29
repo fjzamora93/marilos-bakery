@@ -50,9 +50,7 @@
             "scripts": [],
             "server": "src/main.server.ts",
             "outputMode": "static",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "ssr": true
           },
           "configurations": {
             "production": {
@@ -78,6 +76,29 @@
           },
           "defaultConfiguration": "production"
         },
+
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/marilos-bakery-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "localize": ["es", "en"]
+            },
+            "es": {
+              "localize": ["es"]
+            },
+            "en": {
+              "localize": ["en"]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+
+
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { SeoService } from './products/services/seo.service';
-import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'core/translation/language.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -11,32 +11,46 @@ import { LanguageService } from 'core/translation/language.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  title = 'seo-project';
-
   constructor(
+    private router: Router,
     private seoService: SeoService,
-    private translate: TranslateService,
-    private languageService: LanguageService
-
-  ) {
-    console.log('🚀 AppComponent constructor called');
-    
-    // Initialize translate service
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
-    
-    console.log('🔧 TranslateService initialized:', this.translate);
-  }
+    private languageService: LanguageService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
-    console.log('App initialized with language:', this.languageService.getCurrentLanguage());
+    if (isPlatformBrowser(this.platformId)) {
+      const currentPath = window.location.pathname;
+      const hasLang = this.languageService.getCurrentLanguageFromUrl(currentPath);
+
+      const path = window.location.pathname;
+      const supportedLangs = ['es', 'en'];
+      if (path === '/') {
+        const browserLang = navigator.language.slice(0, 2).toLowerCase();
+        const lang = supportedLangs.includes(browserLang) ? browserLang : 'es';
+        this.router.navigateByUrl(`/${lang}`, { replaceUrl: true });
+      }
+
+      // Redirigir si no tiene idioma en la URL
+      if (!currentPath.match(/^\/(es|en)(\/|$)/)) {
+        const preferredLang = this.languageService.getPreferredLanguage();
+        const newUrl = `/${preferredLang}${currentPath}`;
+        this.router.navigateByUrl(newUrl, { replaceUrl: true });
+        return;
+      }
+
+      // Guardar idioma actual como preferido
+      this.languageService.setPreferredLanguage(hasLang);
+    }
+
+    // SEO básico (sin TranslateService)
     this.seoService.updateMetaTags({
-      title: 'Mi Aplicación Angular con SEO',
-      description: 'Aplicación Angular optimizada para SEO con Server-Side Rendering',
-      keywords: 'Angular, SEO, SSR, TypeScript, JavaScript',
-      author: 'Tu Nombre',
+      title: "Marilo's Bakery - Repostería artesanal en Almuñécar",
+      description: 'Tartas, dulces, bizcochos y galletas caseras por encargo a partir de recetas únicas en la costa de Granada.',
+      keywords: 'tartas, dulces, bizcochos, galletas, repostería, artesanal, casero',
+      author: 'Marilo',
       type: 'website',
-      url: 'https://tu-dominio.com'
+      url: 'https://marilosbakery.com'
     });
   }
 }

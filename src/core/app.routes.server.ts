@@ -1,53 +1,68 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 
-// Rutas del lado del SERVIDOR. Se llama desde "app.config.server.ts"
+const langs = ['es', 'en'];
+
 export const serverRoutes: ServerRoute[] = [
-  
-  // Ruta para productos individuales (debe coincidir con la ruta del cliente)
+{
+  path: '',
+  renderMode: RenderMode.Prerender
+},
+
+  // Home
   {
-    path: 'reposteria/:slug',
-    renderMode: RenderMode.Prerender
-  },
-  
-  // Ruta para lista de productos
-  {
-    path: 'reposteria',
-    renderMode: RenderMode.Prerender
+    path: ':lang',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => langs.map(lang => ({ lang }))
   },
 
-  // Ruta home
+  // About
   {
-    path: '',
-    renderMode: RenderMode.Prerender
+    path: ':lang/about',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => langs.map(lang => ({ lang }))
   },
 
-  // Ruta about
+  // About > privacy-policy
   {
-    path: 'about',
-    renderMode: RenderMode.Prerender
+    path: ':lang/about/privacy-policy',
+    renderMode: RenderMode.Client,
   },
 
-  // Rutas de admin - Client Side Rendering
+  // Lista de productos
   {
-    path: 'admin/**',
-    renderMode: RenderMode.Client
+    path: ':lang/reposteria',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => langs.map(lang => ({ lang }))
   },
 
-  // Rutas de user - Client Side Rendering  
+  // Detalle de producto (slugs)
   {
-    path: 'user/**',
-    renderMode: RenderMode.Client
+    path: ':lang/reposteria/:slug',
+    renderMode: RenderMode.Client,
   },
 
-  // Ruta 404
+  // Admin
   {
-    path: '404',
-    renderMode: RenderMode.Prerender
+    path: ':lang/admin',
+    renderMode: RenderMode.Client,
   },
-  
-  // Todas las demás rutas se prerenderizarán (esto ya no incluirá admin ni user)
+
+  // User
   {
-    path: '**',
-    renderMode: RenderMode.Prerender
+    path: ':lang/user',
+    renderMode: RenderMode.Client,
+  },
+
+  // 404
+  {
+    path: ':lang/404',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => langs.map(lang => ({ lang }))
+  },
+
+  // Wildcard (opcional)
+  {
+    path: ':lang/**',
+    renderMode: RenderMode.Client,
   }
 ];
