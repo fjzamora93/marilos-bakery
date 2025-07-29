@@ -99,10 +99,12 @@ export class TopBarComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-  localizedPath(lang: string): string {
+  localizedPath(lang: string): void {
     this.currentLanguage = lang;
     // Obtiene la ruta actual sin el prefijo de idioma
     const path = this.location.path().replace(/^\/(es|en)/, '');
-    return `/${lang}${path || '/'}`;
+    const url = `/${lang}${path || '/'}`;
+    // Redirige realmente (recarga la página)
+    window.location.href = url;
   }
 }

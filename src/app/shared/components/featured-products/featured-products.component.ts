@@ -40,7 +40,7 @@ export class FeaturedProductsComponent {
 
     },
     {
-      image: '/img/glutenfree/cake_cheese.jpg',
+      image: 'img/glutenfree/cake_cheese.jpg',
       color: 'accent-caramel',
       title: 'Innovaciones de la casa',
       body: 'Porque también nos gusta salirnos del modelo y probar nuevas experiencias. Atrévete a probar nuestras creaciones más atrevidas.',

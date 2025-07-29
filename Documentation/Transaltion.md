@@ -2,6 +2,12 @@
 
 Psamos de usar ngx-translate a otro paquete: angular/localize
 
+COmando para ponerlo a correr localmente:
+
+ng serve --configuration=es --port=4200
+ng serve --configuration=en --port=4300
+
+
 ## 1. Instalar angular/localize
 
 ng add @angular/localize
@@ -138,22 +144,18 @@ LUego en los configurations de tus builds hacer esto:
 
 
 
+
 GEneramos los builds localizadas para cada idioma:
 
 ng build --configuration=es
 ng build --configuration=en
 
-o alternativamente:
-
-ng run marilos-bakery:server:es
-ng run marilos-bakery:server:en
-
 
 o este otro:
 
-     ng build --localize
-     ng run marilos-bakery:server:es
-     ng run marilos-bakery:server:en
+ng build --localize
+ng run marilos-bakery:server:es
+ng run marilos-bakery:server:en
 
 ## SErvir las versiones por idioma
 

@@ -28,10 +28,12 @@
           <path [attr.d]="iconSvg"/>
         </svg>
       </div>
-      <h3 class="text-xl font-elegant font-semibold text-bakery-deep">{{ title }}</h3>
+    <h3 class="text-xl font-elegant font-semibold text-bakery-deep">
+      <ng-content select="[card-title]"></ng-content>
+    </h3>
     </div>
     <p class="text-bakery-brown">
-      {{ body }}
+      <ng-content select="[card-body]"></ng-content>
     </p>
   </div>
 </a>

@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirige raíz a /es/
+  RewriteRule ^$ es/ [R=302,L]
+
+  # Permitir archivos reales
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Reescribe rutas internas a index.html según idioma
+  RewriteRule ^(es|en)(/.*)?$ $1/index.html [L]
+</IfModule>

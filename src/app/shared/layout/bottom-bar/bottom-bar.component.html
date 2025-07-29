@@ -9,7 +9,7 @@
         <div class="lg:col-span-2">
           <div class="flex items-center space-x-3 mb-4">
             <div class="relative">
-              <app-logo [size]="10" />
+              <app-logo [size]="10"></app-logo>
               <div class="absolute -top-1 -right-1 h-4 w-4 bg-accent-strawberry rounded-full animate-pulse"></div>
             </div>
             <div class="flex flex-col">
@@ -19,9 +19,9 @@
               <span class="text-bakery-warm text-sm font-handwriting">Repostería con alma</span>
             </div>
           </div>
-          
-          <p class="text-bakery-warm text-sm leading-relaxed mb-6 max-w-md">
-            Desde 2015, creamos dulces momentos con recetas familiares transmitidas de generación en generación. 
+
+          <p i18n="@@bottomDescription" class="text-bakery-warm text-sm leading-relaxed mb-6 max-w-md">
+            Desde 2015, creamos dulces momentos con recetas familiares transmitidas de generación en generación.
             Cada producto está elaborado con amor, ingredientes naturales y las ganas de probar siempre algo nuevo.
           </p>
           
@@ -44,7 +44,7 @@
         
         <!-- Sección: Nuestros dulces -->
         <div>
-          <h3 class="text-lg font-elegant font-semibold text-bakery-cream mb-4 flex items-center">
+          <h3 i18n="@@bottomSections"  class="text-lg font-elegant font-semibold text-bakery-cream mb-4 flex items-center">
             <div class="w-6 h-6 rounded bg-gradient-to-r from-accent-strawberry to-sweet-pink flex items-center justify-center mr-2">
               <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
@@ -54,7 +54,7 @@
           </h3>
           <ul class="space-y-3">
             <li>
-              <a href="/productos/tartas" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
+              <a i18n="@@bottomSection1"  href="/productos/tartas" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
                 <svg class="w-4 h-4 mr-2 text-accent-caramel group-hover:text-accent-honey transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C10.89 2 10 2.89 10 4V5H8C6.89 5 6 5.89 6 7V8C4.89 8 4 8.89 4 10V18C4 19.11 4.89 20 6 20H18C19.11 20 20 19.11 20 18V10C20 8.89 19.11 8 18 8V7C18 5.89 17.11 5 16 5H14V4C14 2.89 13.11 2 12 2Z"/>
                 </svg>
@@ -62,7 +62,7 @@
               </a>
             </li>
             <li>
-              <a href="/productos/tradicional" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
+              <a i18n="@@bottomSection2" href="/productos/tradicional" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
                 <svg class="w-4 h-4 mr-2 text-accent-caramel group-hover:text-accent-honey transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18.06 23H5.94C5.28 23 4.74 22.46 4.74 21.8V20.74C4.74 20.08 5.28 19.54 5.94 19.54H18.06C18.72 19.54 19.26 20.08 19.26 20.74V21.8C19.26 22.46 18.72 23 18.06 23M12 17C8.69 17 6 14.31 6 11S8.69 5 12 5 18 7.69 18 11 15.31 17 12 17Z"/>
                 </svg>
@@ -70,7 +70,7 @@
               </a>
             </li>
             <li>
-              <a href="/productos/pan" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
+              <a i18n="@@bottomSection3" href="/productos/pan" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
                 <svg class="w-4 h-4 mr-2 text-accent-caramel group-hover:text-accent-honey transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
                 </svg>
@@ -78,7 +78,7 @@
               </a>
             </li>
             <li>
-              <a href="/privacy-policy" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
+              <a i18n="@@bottomSection4" href="/privacy-policy" class="text-bakery-warm hover:text-bakery-cream transition-colors duration-200 flex items-center group">
                 <svg class="w-4 h-4 mr-2 text-accent-caramel group-hover:text-accent-honey transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -90,13 +90,13 @@
         
         <!-- Sección: Contacto y horarios -->
         <div>
-          <h3 class="text-lg font-elegant font-semibold text-bakery-cream mb-4 flex items-center">
+          <h3 i18n="@@bottomContact" class="text-lg font-elegant font-semibold text-bakery-cream mb-4 flex items-center">
             <div class="w-6 h-6 rounded bg-gradient-to-r from-accent-honey to-bakery-gold flex items-center justify-center mr-2">
               <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
               </svg>
             </div>
-            Visítanos
+            ¿Hablamos?
           </h3>
           <div class="space-y-3">
             <div class="flex items-start">
@@ -107,9 +107,7 @@
                 <p class="text-bakery-warm text-sm">Almuñécar, Granada</p>
               </div>
             </div>
-            
         
-            
             <div class="flex items-center">
               <svg class="w-4 h-4 mr-2 text-accent-caramel" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -129,21 +127,33 @@
     <div class="border-t border-bakery-gold/20"></div>
     
     <!-- Footer inferior -->
-    <div class="py-6">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="flex items-center space-x-4 mb-4 md:mb-0">
-          <p class="text-bakery-warm text-sm">
-            © 2025 Marilo's Bakery. Con amor desde 1999.
-          </p>
-        </div>
-        
-        <div class="flex items-center space-x-6">
-          <span class="text-bakery-gold text-sm font-script">
-            "Endulzando desde 2015"
-          </span>
-       
-        </div>
-      </div>
+<div class="py-6">
+  <div class="flex flex-col md:flex-row justify-between items-center">
+    <div class="flex items-center space-x-4 mb-4 md:mb-0">
+      <p class="text-bakery-warm text-sm">
+        © 2025 Marilo's Bakery.
+      </p>
+    </div>
+
+    <div class="flex items-center space-x-6">
+       <p class="text-bakery-warm text-sm">
+        Desarrollado por fjzamora
+      </p>
+      <a href="https://linkedin.com/in/fjzamora93" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-1 text-bakery-gold hover:underline">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4v12h-4zM8.5 8h3.5v1.8h.05c.48-.9 1.67-1.8 3.43-1.8 3.67 0 4.34 2.4 4.34 5.52V20h-4v-6.52c0-1.56-.03-3.58-2.2-3.58-2.2 0-2.53 1.7-2.53 3.46V20h-4z"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+
+      <a href="https://fjzamora93.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-1 text-bakery-gold hover:underline">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 0 0 20M12 2a15.3 15.3 0 0 1 0 20" />
+        </svg>
+        <span>Mi Web</span>
+      </a>
     </div>
   </div>
-</footer>
+</div>
+

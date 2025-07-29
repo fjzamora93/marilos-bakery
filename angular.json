@@ -61,17 +61,26 @@
                 { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ]
             },
+            "es": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "localize": ["es"],
+              "baseHref": "/"
+            },
+            "en": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "localize": ["en"],
+              "baseHref": "/"
+            },
             "development": {
+              
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
               "localize": false
-            },
-            "es": {
-              "localize": ["es"]
-            },
-            "en": {
-              "localize": ["en"]
             }
           },
           "defaultConfiguration": "production"
@@ -88,11 +97,8 @@
             "production": {
               "localize": ["es", "en"]
             },
-            "es": {
-              "localize": ["es"]
-            },
-            "en": {
-              "localize": ["en"]
+            "development": {
+              "localize": false
             }
           },
           "defaultConfiguration": "production"
@@ -106,10 +112,12 @@
               "buildTarget": "marilos-bakery:build:production"
             },
             "development": {
-              "buildTarget": "marilos-bakery:build:development"
+              "buildTarget": "marilos-bakery:build:development",
+              "servePath": "/"
             },
             "es": {
-              "buildTarget": "marilos-bakery:build:es"
+              "buildTarget": "marilos-bakery:build:es",
+              "servePath": "/"
             },
             "en": {
               "buildTarget": "marilos-bakery:build:en"

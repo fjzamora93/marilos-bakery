@@ -2,7 +2,7 @@
 <section class="py-20 bg-gradient-to-r from-bakery-warm to-sweet-peach/30">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-elegant font-bold text-bakery-deep mb-4">
+      <h2 i18n="@@homeFeatureTitle" class="text-4xl font-elegant font-bold text-bakery-deep mb-4">
         Especialidades de 
         <span class="bg-gradient-to-r from-accent-strawberry to-accent-cherry bg-clip-text text-transparent">
           Mariló
@@ -14,16 +14,19 @@
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
       <app-feature-card
-        *ngFor="let card of featuredCards"
-        [image]="card.image"
-        [color]="card.color"
-        [title]="card.title"
-        [body]="card.body"
-        [badge]="card.badge"
-        [icon]="card.icon"
-        [url]="card.url"
-      ></app-feature-card>
+      *ngFor="let card of featuredCards; let i = index"
+      [image]="card.image"
+      [color]="card.color"
+      [badge]="card.badge"
+      [icon]="card.icon"
+      [url]="card.url"
+    >
+      <span card-title i18n="@@featureCardTitle{{i}}">{{ card.title }}</span>
+      <span card-body i18n="@@featureCardBody{{i}}">{{ card.body }}</span>
+    </app-feature-card>
+
     </div>
   </div>
 </section>

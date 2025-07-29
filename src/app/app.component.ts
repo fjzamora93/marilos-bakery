@@ -3,6 +3,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { SeoService } from './products/services/seo.service';
 import { LanguageService } from 'core/translation/language.service';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -23,21 +24,18 @@ export class AppComponent implements OnInit {
       const currentPath = window.location.pathname;
       const hasLang = this.languageService.getCurrentLanguageFromUrl(currentPath);
 
-      const path = window.location.pathname;
-      const supportedLangs = ['es', 'en'];
-      if (path === '/') {
-        const browserLang = navigator.language.slice(0, 2).toLowerCase();
-        const lang = supportedLangs.includes(browserLang) ? browserLang : 'es';
-        this.router.navigateByUrl(`/${lang}`, { replaceUrl: true });
+  
+
+      // Solo redirige en producción
+      if (environment.production) {
+        if (!currentPath.match(/^\/(es|en)(\/|$)/)) {
+          const preferredLang = this.languageService.getPreferredLanguage();
+          const newUrl = `/${preferredLang}${currentPath}`;
+          this.router.navigateByUrl(newUrl, { replaceUrl: true });
+          return;
+        }
       }
 
-      // Redirigir si no tiene idioma en la URL
-      if (!currentPath.match(/^\/(es|en)(\/|$)/)) {
-        const preferredLang = this.languageService.getPreferredLanguage();
-        const newUrl = `/${preferredLang}${currentPath}`;
-        this.router.navigateByUrl(newUrl, { replaceUrl: true });
-        return;
-      }
 
       // Guardar idioma actual como preferido
       this.languageService.setPreferredLanguage(hasLang);
