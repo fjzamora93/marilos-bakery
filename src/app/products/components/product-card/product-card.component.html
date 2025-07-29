@@ -43,7 +43,7 @@
 
 <!-- Vista de Lista -->
 <div *ngIf="!isGridView" class="group">
-  <a [routerLink]="['/reposteria', product.slug]" 
+  <a (click)="goToProductDetail()"
      class="flex bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden border border-bakery-gold/30 transition-all duration-300 hover:shadow-bakery hover:border-accent-caramel/50">
     
     <!-- Imagen -->

@@ -29,6 +29,12 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client,
   },
 
+    // Detalle de producto (slugs) - client-side
+  {
+    path: ':lang/reposteria/:slug',
+    renderMode: RenderMode.Client,
+  },
+  
   // Lista de productos
   {
     path: ':lang/reposteria',
@@ -36,11 +42,7 @@ export const serverRoutes: ServerRoute[] = [
     getPrerenderParams: async () => langs.map(lang => ({ lang }))
   },
 
-  // Detalle de producto (slugs) - client-side
-  {
-    path: ':lang/reposteria/:slug',
-    renderMode: RenderMode.Client,
-  },
+
 
   // Admin - client-side
   {
@@ -60,7 +62,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client,
   },
 
-  // Wildcard - client-side
+  // Wildcard - client-side (con idioma y vacia)
   {
     path: ':lang/**',
     renderMode: RenderMode.Client,
