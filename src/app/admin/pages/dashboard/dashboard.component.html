@@ -61,9 +61,7 @@
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Precio
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Fecha
-                </th>
+            
                 <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Acciones
                 </th>
@@ -92,11 +90,9 @@
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  ${{ product.price | number:'1.2-2' }}
+                  {{ product.price | number:'1.2-2' }}€
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ product.createdAt | date:'short' }}
-                </td>
+           
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     (click)="onEditProduct(product.id)"

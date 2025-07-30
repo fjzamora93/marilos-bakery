@@ -8,10 +8,11 @@ import { AdminProductsService } from '../../services/admin-product.service';
 import { Product } from '../../../products/models/product';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { Category } from '@app/products/models/category';
+import { DragAndDropComponent } from "../drag-and-drop/drag-and-drop.component";
 
 @Component({
   selector: 'app-upsert-product-form',
-  imports: [CommonModule, ReactiveFormsModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule, MatButtonModule, DragAndDropComponent],
   templateUrl: './upsert-product-form.component.html',
   styleUrl: './upsert-product-form.component.scss'
 })
@@ -24,7 +25,9 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
   isLoading = false;
   isEditMode = false;
   selectedImageFile: File | null = null;
-  imagePreview: string | null = null;
+   imagePreview: string | ArrayBuffer | null = null;
+  availableCategories = Object.values(Category);
+
   private subscription = new Subscription();
 
   constructor(
@@ -36,6 +39,7 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(2)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       price: ['', [Validators.required, Validators.min(0)]],
+      category: ['', Validators.required],
     });
   }
 
@@ -62,7 +66,8 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
               name: product.name,
               description: product.description,
               price: product.price,
-              imageUrl: product.imageUrl
+              imageUrl: product.imageUrl,
+              category: product.category || Category.SWEETS
             });
             this.imagePreview = product.imageUrl || null; 
             this.selectedImageFile = null; 
@@ -77,18 +82,13 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
     );
   }
 
-  onImageSelected(event: Event): void {
-    const fileInput = event.target as HTMLInputElement;
-    if (fileInput.files && fileInput.files.length > 0) {
-      this.selectedImageFile = fileInput.files[0];
-
-      // Mostrar vista previa
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result as string;
-      };
-      reader.readAsDataURL(this.selectedImageFile);
-    }
+  onImageSelected(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+    reader.readAsDataURL(file);
+    this.selectedImageFile = file;
   }
 
  onSubmit() {
@@ -120,7 +120,8 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
             name: formData.name,
             description: formData.description,
             price: Number(formData.price),
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            category: formData.category || Category.SWEETS,
           },
           this.selectedImageFile 
         ).subscribe({
@@ -140,7 +141,7 @@ export class UpsertProductFormComponent implements OnInit, OnDestroy {
         name: formData.name,
         description: formData.description,
         price: Number(formData.price),
-        category: Category.SWEETS,
+        category: formData.category || Category.SWEETS,
         slug: this.generateSlug(formData.name),
         seoTitle: formData.name,
         seoDescription: formData.description,

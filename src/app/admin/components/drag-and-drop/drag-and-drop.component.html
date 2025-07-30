@@ -1,0 +1,23 @@
+<div 
+  class="drop-zone"
+  (dragover)="onDragOver($event)" 
+  (drop)="onDrop($event)"
+  (dragleave)="onDragLeave($event)"
+  [class.dragover]="isDragOver"
+  (click)="fileInput.click()"
+  style="border: 2px dashed #ccc; border-radius: 8px; padding: 1rem; text-align: center; cursor: pointer;"
+>
+  <label class="block text-sm font-medium text-gray-700 mb-2 cursor-pointer">
+    Arrastra y suelta la imagen aquí o haz click para seleccionar *
+  </label>
+
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    (change)="onFileInputChange($event)"
+    hidden
+  />
+
+  <ng-content></ng-content>
+</div>
