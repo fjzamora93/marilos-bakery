@@ -1,123 +1,80 @@
- <!-- Hero Section - Diseño Split Screen -->
-  <section class="relative py-24 flex items-center">
-    
-  
-  
-    <app-floating-button></app-floating-button>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-10">
+<section class="relative py-24 bg-gradient-to-br from-bakery-cream via-sweet-vanilla to-bakery-warm overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Columna Izquierda: Identidad + Mensaje -->
+      <div class="space-y-8 text-center lg:text-left">
         
-        <!-- Contenido de texto (izquierda) -->
-        <div class="space-y-8">
-          <div class="flex items-center space-x-4 mb-8">
-
-            <!-- Marco vintage del logo -->
-            <div class="relative group">
-              <!-- Cuadro con marco y fondo -->
-              <app-logo/>
-            </div>
-
-            
-            <div class="flex flex-col">
-              <h1 class="text-4xl md:text-6xl font-elegant font-bold text-bakery-deep leading-none">
-                Marilo's
-              </h1>
-              <p class="text-xl md:text-2xl font-handwriting text-accent-caramel leading-none">
-                Bakery
-              </p>
-            </div>
-          </div>
-          
-          <!-- Mensaje de bienvenida -->
-          <div class="space-y-4">
-            <h2 class="text-3xl md:text-4xl font-light text-bakery-brown leading-relaxed">
-              <span i18n="@@homeHeroTitle" class="bg-gradient-to-r from-accent-caramel via-bakery-gold to-accent-honey bg-clip-text text-transparent font-handwriting text-4xl md:text-5xl">
-                Repostería casera en Almuñécar
-              </span>
+        <!-- Logo + Nombre del sitio -->
+        <div class="flex items-center justify-center lg:justify-start space-x-8">
+          <app-logo class="w-20 h-20" />
+          <div class="text-left">
+            <h1 class="text-3xl md:text-4xl font-handwriting text-accent-caramel leading-tight">
+              Momentos dulces de
+            </h1>
+            <h2 class="text-4xl md:text-5xl font-elegant font-bold text-bakery-deep">
+              Mariló
             </h2>
+          </div>
+        </div>
 
-            <p i18n="@@homeHeroDescription" class="text-lg md:text-xl text-bakery-brown max-w-xl leading-relaxed font-light">
-              La mejor repostería de Almuñécar, con ingredientes frescos y recetas tradicionales.
-            </p>
-          </div>
-          
-          <!-- Botones de acción -->
-          <div class="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="/reposteria" 
-               class="group relative overflow-hidden bg-gradient-to-r from-accent-caramel to-bakery-gold text-bakery-cream px-8 py-4 rounded-full font-semibold text-lg hover:from-bakery-gold hover:to-accent-caramel transform hover:scale-105 transition-all duration-300 shadow-warm hover:shadow-bakery text-center">
-              <span i18n="@@homeHeroButton"  class="relative z-10 flex items-center justify-center">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
-                </svg>
-                Descubre la experiencia
-              </span>
-              <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
-            </a>
-            
-         
-          </div>
-          
-          <!-- Estadísticas rápidas -->
-          <div class="grid grid-cols-3 gap-6 pt-8">
-            <div class="text-center">
-              <div class="text-2xl font-bold text-bakery-deep mb-1">15+</div>
-              <div i18n="@@homeHeroTag1"  class="text-sm text-bakery-brown font-light">Productos</div>
-            </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold text-bakery-deep mb-1">50+</div>
-              <div i18n="@@homeHeroTag2"  class="text-sm text-bakery-brown font-light">Clientes</div>
-            </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold text-bakery-deep mb-1">1000+</div>
-              <div i18n="@@homeHeroTag3"  class="text-sm text-bakery-brown font-light">Pedidos</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Galería de productos (derecha) -->
-        <div class="relative">
-          <!-- Imagen principal -->
-          <div class="relative z-10 group">
-            <div class="relative overflow-hidden rounded-3xl shadow-bakery group-hover:shadow-sweet transition-all duration-500">
-              <img 
-                src="img/wallpaper/wallpaper_1.jpg" 
-                alt="Tarta artesanal de Marilo's Bakery"
-                class="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-500">
-              <!-- Overlay con información -->
-              <div class="absolute inset-0 bg-gradient-to-t from-bakery-deep/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <div class="text-white">
-                  <h3 i18n="@@homeHeroImgOverlayTitle"  class="text-xl font-elegant font-semibold mb-2">Tarta de Chocolate Artesanal</h3>
-                  <p i18n="@@homeHeroImgOverlayDescription" class="text-bakery-cream text-sm">Elaborada con chocolate belga y crema casera</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Badge de producto destacado -->
-            <div i18n="@@homeHeroImgTag" class="absolute top-4 right-4 bg-accent-strawberry text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-              Especial del Chef
-            </div>
-          </div>
-          
-          <!-- Imágenes secundarias flotantes -->
-          <div class="absolute -top-6 -left-6 w-32 h-32 rounded-2xl overflow-hidden shadow-sweet opacity-80 hover:opacity-100 transition-opacity duration-300 z-20">
-            <img 
-              src="img/cookies/cookies.jpg" 
-              alt="Cupcakes artesanales"
-              class="w-full h-full object-cover">
-          </div>
-          
-          <div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-xl overflow-hidden shadow-sweet opacity-70 hover:opacity-100 transition-opacity duration-300 z-20">
-            <img 
-              src="img/cookies/cookies.jpg" 
-              alt="Donuts caseros"
-              class="w-full h-full object-cover">
-          </div>
-          
-          <!-- Elementos decorativos -->
-          <div class="absolute top-1/2 -left-12 w-24 h-24 bg-gradient-to-br from-sweet-pink/30 to-accent-strawberry/20 rounded-full blur-xl"></div>
-          <div class="absolute bottom-1/4 -right-8 w-20 h-20 bg-gradient-to-br from-accent-honey/30 to-bakery-gold/20 rounded-full blur-lg"></div>
-        </div>
+
+        <!-- Subtítulo -->
+        <p i18n="@@homeHeroTitle"
+           class="text-2xl md:text-3xl font-handwriting text-bakery-brown leading-relaxed">
+          Repostería casera en Almuñécar
+        </p>
+
+        <!-- Descripción -->
+        <p i18n="@@homeHeroDescription"
+           class="text-lg md:text-xl text-bakery-brown max-w-xl font-light mx-auto lg:mx-0 leading-relaxed">
+          Cada bocado es una experiencia única. Tradición e innovación se mezclan en nuestras recetas artesanales hechas con amor.
+        </p>
+
+        <!-- Botón -->
+        <a href="reposteria"
+           class="inline-block bg-gradient-to-r from-accent-caramel to-bakery-gold text-bakery-cream px-8 py-3 rounded-full font-semibold text-lg shadow-warm hover:from-bakery-gold hover:to-accent-caramel transition-all duration-300">
+          <span i18n="@@homeHeroButton">Descubre la experiencia</span>
+        </a>
+
       </div>
+
+      <!-- Columna Derecha: Imagen destacada -->
+      <div class="relative">
+        <div class="relative overflow-hidden rounded-3xl shadow-bakery group hover:shadow-sweet transition-all duration-500">
+          <img 
+            src="img/wallpaper/wallpaper_1.jpg" 
+            alt="Tarta artesanal de Momentos dulces de Mariló"
+            class="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-500">
+
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-bakery-deep/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div class="text-white">
+              <h3 i18n="@@homeHeroImgOverlayTitle" class="text-xl font-elegant font-semibold mb-1">Tarta de Chocolate Artesanal</h3>
+              <p i18n="@@homeHeroImgOverlayDescription" class="text-sm text-bakery-cream">Con chocolate belga y crema casera</p>
+            </div>
+          </div>
+
+          <!-- Badge destacado -->
+          <div i18n="@@homeHeroImgTag"
+               class="absolute top-4 right-4 bg-accent-strawberry text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+            Especial del Chef
+          </div>
+        </div>
+
+        <!-- Imágenes flotantes decorativas -->
+        <div class="absolute -top-6 -left-6 w-28 h-28 rounded-2xl overflow-hidden shadow-sweet z-20 opacity-80 hover:opacity-100 transition-opacity">
+          <img src="img/brownie-vegano.jpg" alt="Brownie vegano" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute -bottom-6 -right-6 w-24 h-24 rounded-xl overflow-hidden shadow-sweet z-20 opacity-80 hover:opacity-100 transition-opacity">
+          <img src="img/cookies/cookies.jpg" alt="Donuts caseros" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Elementos decorativos -->
+        <div class="absolute top-1/2 -left-10 w-20 h-20 bg-gradient-to-br from-sweet-pink/30 to-accent-strawberry/20 rounded-full blur-xl"></div>
+        <div class="absolute bottom-1/4 -right-8 w-16 h-16 bg-gradient-to-br from-accent-honey/30 to-bakery-gold/20 rounded-full blur-lg"></div>
+      </div>
+      
     </div>
-  </section>
-  
+  </div>
+</section>

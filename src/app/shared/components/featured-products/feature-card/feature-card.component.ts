@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-feature-card',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './feature-card.component.html',
   styleUrl: './feature-card.component.scss'
 })
@@ -26,8 +27,12 @@ export class FeatureCardComponent {
       'accent-strawberry': 'from-accent-strawberry to-sweet-pink',
       'accent-honey': 'from-accent-honey to-bakery-gold',
       'accent-caramel': 'from-accent-caramel to-bakery-gold',
+      'accent-chocolate': 'from-accent-chocolate to-bakery-brown',
+      'accent-cherry': 'from-accent-cherry to-sweet-pink',
     };
-    return `bg-gradient-to-r ${colorMap[this.color] || 'from-accent-strawberry to-sweet-pink'}`;
+
+    const gradient = colorMap[this.color] || 'from-accent-strawberry to-sweet-pink';
+    return `bg-gradient-to-r ${gradient}`;
   }
 
   // Getter para obtener las clases de hover del borde

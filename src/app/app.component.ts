@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
 
     // SEO básico (sin TranslateService)
     this.seoService.updateMetaTags({
-      title: "Marilo's Bakery - Repostería artesanal en Almuñécar",
+      title: "Momentos dulces de Mariló - Repostería artesanal en Almuñécar",
       description: 'Tartas, dulces, bizcochos y galletas caseras por encargo a partir de recetas únicas en la costa de Granada.',
       keywords: 'tartas, dulces, bizcochos, galletas, repostería, artesanal, casero',
       author: 'Marilo',

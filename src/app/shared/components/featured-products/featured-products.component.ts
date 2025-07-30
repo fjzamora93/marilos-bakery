@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatureCardComponent } from './feature-card/feature-card.component';
+import { LogoComponent } from "../logo/logo.component";
 
 interface FeatureCardData {
   image: string;
@@ -14,7 +15,7 @@ interface FeatureCardData {
 
 @Component({
   selector: 'app-featured-products',
-  imports: [CommonModule, FeatureCardComponent],
+  imports: [CommonModule, FeatureCardComponent, LogoComponent],
   templateUrl: './featured-products.component.html',
   styleUrl: './featured-products.component.scss'
 })

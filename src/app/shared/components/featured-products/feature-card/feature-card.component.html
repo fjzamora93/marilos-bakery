@@ -24,9 +24,7 @@
       <div 
         class="w-12 h-12 rounded-full flex items-center justify-center mr-4"
         [class]="iconColorClass">
-        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path [attr.d]="iconSvg"/>
-        </svg>
+        <mat-icon class="text-white" fontIcon="{{ icon }}"></mat-icon>
       </div>
     <h3 class="text-xl font-elegant font-semibold text-bakery-deep">
       <ng-content select="[card-title]"></ng-content>
