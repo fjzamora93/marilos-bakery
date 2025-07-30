@@ -13,7 +13,6 @@ import { provideServerRendering } from '@angular/platform-server';
 
 // Crear un interceptor de autenticación básico
 const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // Agregar lógica de autenticación aquí si es necesario
   return next(req);
 };
 

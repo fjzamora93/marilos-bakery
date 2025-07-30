@@ -8,6 +8,7 @@ export class LanguageService {
   private supportedLanguages = ['es', 'en'];
   private defaultLanguage = 'es';
 
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   detectBrowserLanguage(): string {

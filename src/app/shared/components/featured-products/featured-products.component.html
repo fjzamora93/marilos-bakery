@@ -15,17 +15,39 @@
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-      <app-feature-card
-      *ngFor="let card of featuredCards; let i = index"
-      [image]="card.image"
-      [color]="card.color"
-      [badge]="card.badge"
-      [icon]="card.icon"
-      [url]="card.url"
+    <app-feature-card
+      image="img/cakes/cake_carrot.png"
+      color="accent-strawberry"
+      badge="popular"
+      icon="cake"
+      url="reposteria?category=tartas"
     >
-      <span card-title i18n="@@featureCardTitle{{i}}">{{ card.title }}</span>
-      <span card-body i18n="@@featureCardBody{{i}}">{{ card.body }}</span>
+      <span card-title i18n="@@featureCardTitle1">Tartas Caseras</span>
+      <span card-body i18n="@@featureCardBody1">Desde clásicos bizcochos hasta tartas innovadoras. Perfectas para celebraciones especiales y momentos únicos.</span>
     </app-feature-card>
+
+    <app-feature-card
+      image="img/cookies/cookies.jpg"
+      color="accent-honey"
+      badge="a bocaditos"
+      icon="star"
+      url="/reposteria?category=dulces"
+    >
+      <span card-title i18n="@@featureCardTitle2">Mesas dulces</span>
+      <span card-body i18n="@@featureCardBody2">Deliciosas combinaciones de sabores y texturas. Una combinación de dulces perfectas para acompañar todo tipo de eventos.</span>
+    </app-feature-card>
+
+    <app-feature-card
+      image="img/glutenfree/cake_cheese.jpg"
+      color="accent-caramel"
+      badge="experimental"
+      icon="cookie"
+      url="/reposteria?category=experimental"
+    >
+      <span card-title i18n="@@featureCardTitle3">Innovaciones de la casa</span>
+      <span card-body i18n="@@featureCardBody3">Porque también nos gusta salirnos del modelo y probar nuevas experiencias. Atrévete a probar nuestras creaciones más atrevidas.</span>
+    </app-feature-card>
+
 
     </div>
   </div>

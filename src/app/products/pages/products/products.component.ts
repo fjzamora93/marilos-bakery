@@ -8,11 +8,12 @@ import { Product } from '../../models/product';
 import { SeoService } from '../../services/seo.service';
 import { ProductCardComponent } from "@app/products/components/product-card/product-card.component";
 import { Category, stringToCategory } from '@app/products/models/category';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProductCardComponent, FormsModule],
+  imports: [CommonModule, RouterModule, ProductCardComponent, FormsModule, MatIconModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   animations: [
@@ -36,25 +37,26 @@ export default class ProductsComponent implements OnInit, OnDestroy {
   selectedCategory: Category | null = null;
   loading = true;
   error: string | null = null;
+
+  // Listas por categorías
+  dulcesCategory: Product[] = [];
+  tartasCategory: Product[] = [];
+  experimentalCategory: Product[] = [];
+  healthyCategory: Product[] = [];
   
+
   // Funcionalidades nuevas
   searchTerm: string = '';
-  isGridView: boolean = true;
-  isMobile = false;
 
    ngOnInit(): void {
     this.detectCategoryFromQueryParams(); 
-    // Solo verificar tamaño de pantalla en el browser
-    if (isPlatformBrowser(this.platformId)) {
-      this.checkScreenSize();
-      
-      // Listener para cambios de tamaño de pantalla
-      this.resizeListener = () => this.checkScreenSize();
-      window.addEventListener('resize', this.resizeListener);
-    }
-    
+
     this.loadProducts();
     this.setupSEO();
+
+    this.dulcesCategory = this.products.filter(product => product.category === 'dulces');
+    this.tartasCategory = this.products.filter(product => product.category === 'tartas');
+    this.experimentalCategory = this.products.filter(product => product.category === 'experimental');
   }
 
     ngOnDestroy(): void {
@@ -121,30 +123,23 @@ export default class ProductsComponent implements OnInit, OnDestroy {
 
   // Filtrar productos por búsqueda
    filterProducts(): void {
-    let productsToFilter = this.selectedCategory 
-      ? this.products.filter(product => {
-          const normalizedCategory = this.selectedCategory!.toLowerCase().replace(/-/g, ' ');
-          return product.category.toLowerCase() === normalizedCategory ||
-                 product.category.toLowerCase().includes(normalizedCategory);
-        })
-      : [...this.products];
-
-    if (!this.searchTerm.trim()) {
-      this.filteredProducts = productsToFilter;
-      return;
-    }
-
+    this.selectedCategory = null; // Limpiar categoría al buscar
     const term = this.searchTerm.toLowerCase().trim();
-    this.filteredProducts = productsToFilter.filter(product => 
+    this.filteredProducts = this.products.filter(product => 
       product.name.toLowerCase().includes(term) ||
       product.description?.toLowerCase().includes(term)
     );
   }
 
-  // Cambiar modo de visualización
-   toggleView(): void {
-    this.loadProducts();
-    this.isGridView = !this.isGridView;
+  // Cambiar categoría
+  changeCategory(selectedCategory: string | null): void {
+    if (!selectedCategory) {
+      this.selectedCategory = null;
+      this.filteredProducts = [...this.products];
+      return;
+    }
+    this.selectedCategory = stringToCategory(selectedCategory);
+    this.filterByCategory();
   }
 
   // Limpiar búsqueda
@@ -170,20 +165,7 @@ export default class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  checkScreenSize(): void {
-    // Solo ejecutar en el browser
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
 
-    const wasMobile = this.isMobile;
-    this.isMobile = window.innerWidth < 768;
-    
-    // Solo forzar lista en móvil si cambió el estado
-    if (this.isMobile && !wasMobile) {
-      this.isGridView = false;
-    }
-  }
 
   
 }

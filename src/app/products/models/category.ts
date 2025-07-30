@@ -19,3 +19,4 @@ export function stringToCategory(categoryString: string): Category | null {
 
   return categoryMap[normalized] || null;
 }
+

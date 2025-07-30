@@ -120,7 +120,8 @@
               "servePath": "/"
             },
             "en": {
-              "buildTarget": "marilos-bakery:build:en"
+              "buildTarget": "marilos-bakery:build:en",
+              "servePath": "/"
             }
           },
           "defaultConfiguration": "development"

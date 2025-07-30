@@ -7,6 +7,7 @@ import { MenuOption } from '@app/shared/helper/menu-option';
 import { MatIconModule } from "@angular/material/icon";
 import { Subscription } from 'rxjs';
 import { AuthService } from 'core/auth/auth.service';
+import { LanguageService } from 'core/translation/language.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,15 +22,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
   @Output() closeSidebar = new EventEmitter<void>();
   
   isAdmin: boolean = false;
+  menuOptions: MenuOption[] = [];
   private authSubscription?: Subscription;
   private isBrowser: boolean;
+  
 
 
   constructor(
     private router: Router,
     private authService: AuthService,
+    private langService: LanguageService,
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -45,6 +49,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     if (this.isBrowser) {
       this.document.addEventListener('keydown', this.handleKeydown.bind(this));
+    }
+
+    if (this.langService.getPreferredLanguage() === 'es') {
+      this.menuOptions = this.menuOptionsEs;
+    }
+    else if (this.langService.getPreferredLanguage() === 'en') {
+      this.menuOptions = this.menuOptionsEn;
+    }
+    else {
+      this.menuOptions = this.menuOptionsEs; // Default to Spanish if no match
     }
   }
 
@@ -84,68 +98,67 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
 
-    menuOptions: MenuOption[] = [
-    // Opciones públicas
-    {
-      text: 'Inicio',
-      label: 'public',
-      icon: 'home',
-      route: '/',
-      requiresAuth: false,
-    },
-    {
-      text: 'Carta completa',
-      label: 'public',
-      icon: 'cake',
-      route: '/reposteria',
-      requiresAuth: false,
-    },
-    {
-      text: 'Nuestros dulces',
-      label: 'public',
-      icon: 'cake',
-      route: '/reposteria?category=tartas',
-      requiresAuth: false,
-    },
-    {
-      text: 'Repostería saludable',
-      label: 'public',
-      icon: 'favorite',
-      route: '/reposteria?category=healthy',
-      requiresAuth: false,
-    },
-    {
-      text: 'Tartas',
-      label: 'public',
-      icon: 'bakery_dining',
-      route: '/reposteria?category=tartas',
-      requiresAuth: false,
-    },
-    {
-      text: 'Experimentación',
-      label: 'public',
-      icon: 'science',
-      route: '/reposteria?category=experimental',
-      requiresAuth: false,
-    },
+    menuOptionsEs: MenuOption[] = [
+      {
+        text: 'Inicio',
+        label: 'public',
+        icon: 'home',
+        route: '/',
+        requiresAuth: false,
+      },
+      {
+        text: 'Carta completa',
+        label: 'public',
+        icon: 'cake',
+        route: '/reposteria',
+        requiresAuth: false,
+      },
+      {
+        text: 'Panel de administración',
+        label: 'admin',
+        icon: 'admin_panel_settings',
+        route: '/admin',
+        requiresAuth: true,
+      },
+      {
+        text: 'Política de privacidad',
+        label: 'info',
+        icon: 'policy',
+        route: '/privacy-policy',
+        requiresAuth: false,
+      }
+    ];
 
-    // Opción de administración (requiere autenticación)
-    {
-      text: 'Panel de administración',
-      label: 'admin',
-      icon: 'admin_panel_settings',
-      route: '/admin',
-      requiresAuth: false,
-    },
+    menuOptionsEn: MenuOption[] = [
+      {
+        text: 'Home',
+        label: 'public',
+        icon: 'home',
+        route: '/',
+        requiresAuth: false,
+      },
+      {
+        text: 'Full Menu',
+        label: 'public',
+        icon: 'cake',
+        route: '/reposteria',
+        requiresAuth: false,
+      },
+      {
+        text: 'Admin Panel',
+        label: 'admin',
+        icon: 'admin_panel_settings',
+        route: '/admin',
+        requiresAuth: true,
+      },
+      {
+        text: 'Privacy Policy',
+        label: 'info',
+        icon: 'policy',
+        route: '/privacy-policy',
+        requiresAuth: false,
+      }
+    ];
 
-    // Opción informativa
-    {
-      text: 'Política de privacidad',
-      label: 'info',
-      icon: 'policy',
-      route: '/privacy-policy',
-      requiresAuth: false,
-    }
-  ];
 
 }

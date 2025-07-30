@@ -47,29 +47,54 @@
         </div>
 
         <!-- Controles de vista (solo en desktop) -->
-        <div *ngIf="!isMobile" class="flex bg-bakery-cream/50 rounded-full p-1 border border-bakery-gold/20">
+        <div  class="flex bg-bakery-cream/50 rounded-full p-1 border border-bakery-gold/20">
           <button
-            (click)="toggleView()"
-            [class]="isGridView? 
+            (click)="changeCategory(null)"
+            [class]="selectedCategory === null ? 
               'bg-accent-caramel text-bakery-cream shadow-warm' : 
               'text-bakery-deep hover:text-accent-caramel'"
             class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center space-x-2">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-            </svg>
-            <span>Grilla</span>
+             <mat-icon>view_list</mat-icon>
+            <span i18n="@@categoryAll">Todo</span>
           </button>
           <button
-            (click)="toggleView()"
-            [class]="!isGridView? 
+            (click)="changeCategory('dulces')"
+            [class]="selectedCategory === 'dulces' ? 
               'bg-accent-caramel text-bakery-cream shadow-warm' : 
               'text-bakery-deep hover:text-accent-caramel'"
             class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center space-x-2">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-            </svg>
-            <span>Lista</span>
+             <mat-icon>cookie</mat-icon>
+            <span i18n="@@categorySweets">Dulces</span>
           </button>
+          <button
+            (click)="changeCategory('tartas')"
+            [class]="selectedCategory === 'tartas' ?
+              'bg-accent-caramel text-bakery-cream shadow-warm' : 
+              'text-bakery-deep hover:text-accent-caramel'"
+            class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center space-x-2">
+            <mat-icon>cake</mat-icon>
+            <span i18n="@@categoryTartas">Tartas</span>
+          </button>
+          <button
+          (click)="changeCategory('experimental')"
+          [class]="selectedCategory === 'experimental' ?
+            'bg-accent-caramel text-bakery-cream shadow-warm' : 
+            'text-bakery-deep hover:text-accent-caramel'"
+          class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center space-x-2">
+          <mat-icon>science</mat-icon>
+          <span i18n="@@categoryTartas">Experimental</span>
+          </button>
+
+          <button
+            (click)="changeCategory('saludable')"
+            [class]="selectedCategory === 'saludable' ?
+              'bg-accent-caramel text-bakery-cream shadow-warm' : 
+              'text-bakery-deep hover:text-accent-caramel'"
+            class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center space-x-2">
+            <mat-icon>eco</mat-icon>
+            <span i18n="@@categoryHealthy">Saludable</span>
+          </button>
+            
         </div>
       </div>
 
@@ -125,26 +150,29 @@
 
     <!-- Products Grid/List -->
     <div *ngIf="!loading && filteredProducts.length > 0">
-      <!-- Vista de grilla -->
-      <div *ngIf="isGridView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-         @for (product of filteredProducts; track product.id) {
-          <app-product-card 
-            [product]="product"
-            [isGridView]="isGridView">
-          </app-product-card>
-        }
-      </div>
+      <!-- Vista de lista si hay filtro -->
+      <h3 class="text-lg font-semibold text-bakery-deep mb-2">
+        {{
+          selectedCategory
+            ? selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1).toLowerCase()
+            : 'Toda nuestra repostería'
+        }}
+      </h3>
 
-      <!-- Vista de lista -->
-      <div *ngIf="!isGridView" class="space-y-4">
+      <div  class="space-y-4">
         @for (product of filteredProducts; track product.id) {
           <app-product-card 
             [product]="product"
-            [isGridView]="isGridView">
+            [isGridView]="false">
           </app-product-card>
         }
-    
       </div>
+      
+     
+
+
+
+
     </div>
   </div>
 </div>

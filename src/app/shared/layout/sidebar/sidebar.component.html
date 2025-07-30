@@ -26,7 +26,6 @@
             <h2 id="sidebar-title" class="text-bakery-deep font-elegant font-bold text-lg leading-none">
               Marilo's Bakery
             </h2>
-            <span class="text-accent-caramel text-sm font-script">Menú Principal</span>
           </div>
         </div>
         <button 
@@ -65,7 +64,7 @@
           
           <!-- Sección: Navegación Principal -->
           <div class="px-6 mb-4">
-            <h3 class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
+            <h3 i18n="@@menuTitleNavigation" class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
               Navegación
             </h3>
             <div class="space-y-1">
@@ -93,7 +92,7 @@
              <!-- Divider -->
             <div class="mx-6 border-t border-bakery-gold/20"></div>
             <div class="px-6 mt-4">
-              <h3 class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
+              <h3 i18n="@@menuTitleManagement" class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
                 Gestión
               </h3>
               <!-- ADMIN -->
@@ -103,7 +102,7 @@
                   <a 
                     class="flex items-center px-3 py-2.5 text-bakery-deep hover:text-accent-caramel hover:bg-sweet-peach/30 rounded-lg transition-all duration-200 cursor-pointer group"
                     [ngClass]="{
-                      'opacity-50 pointer-events-none': option.requiresAuth 
+                      'opacity-50 pointer-events-none': option.requiresAuth != isAdmin
                     }"
                     (click)="navigateAndClose(option.route!)">
                     <div class="flex items-center justify-center w-8 h-8 rounded-lg text-white mr-3 bg-accent-cherry shrink-0">
@@ -121,7 +120,7 @@
           
           <!-- Sección: Información -->
           <div class="px-6 mt-4">
-            <h3 class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
+            <h3 i18n="@@menuTitleInformation" class="text-xs font-semibold text-bakery-brown uppercase tracking-wider mb-3 font-elegant">
               Información
             </h3>
             <!-- INFO -->
@@ -148,7 +147,7 @@
       <!-- Footer del Sidebar -->
       <div class="border-t border-bakery-gold/20 bg-sweet-vanilla/50 p-4">
         <div class="flex items-center justify-center space-x-4 text-bakery-brown">
-          <span class="text-sm font-script">© 2025 Marilo's Bakery</span>
+          <span class="text-bakery-warm ">© 2025 Marilo's Bakery</span>
           <div class="w-1 h-1 bg-accent-caramel rounded-full"></div>
         </div>
       </div>
