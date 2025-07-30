@@ -1,29 +1,47 @@
-<!-- Contenedor principal con márgenes superior e inferior -->
-<div class="min-h-screen py-12 md:py-20 lg:py-20">
-  
-  <div class="product-container" *ngIf="product && !loading && !error">
-    <div class="product-header">
-      <img 
-        [src]="product.imageUrl" 
-        [alt]="product.name"
-        class="product-image"
-        loading="lazy"
-      />
-      <div class="product-info">
-        <h1 class="product-title">{{ product.name }}</h1>
-        <p class="product-category">{{ product.category }}</p>
-        <p class="product-price">{{ product.price | currency:'EUR' }}</p>
-        <p class="product-description">{{ product.description }}</p>
+<div class="min-h-screen py-10 px-4 sm:px-6 lg:px-8 bg-caramel">
+  <div class="max-w-5xl mx-auto bg-white/90 rounded-3xl shadow-bakery p-6 sm:p-10 lg:p-14">
+
+   <div class="w-full">
+      <!-- Imagen flotante para pantallas grandes -->
+      <div
+        class="w-full sm:w-2/3 lg:w-[40%] lg:float-right lg:ml-8 mb-6 rounded-3xl overflow-hidden border-4 border-bakery-gold shadow-sweet aspect-w-4 aspect-h-3"
+      >
+        <img 
+          [src]="product!.imageUrl!" 
+          [alt]="product!.name!"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Información del producto -->
+      <div>
+        <h1 class="text-4xl lg:text-5xl font-elegant font-bold text-bakery-deep mb-4">
+          {{ product!.name! }}
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+          <span class="inline-block bg-accent-caramel/90 text-bakery-cream px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-warm">
+            {{ product!.price | number:'1.2-2' }} €
+          </span>
+        
+        </div>
+
+        <div 
+          class="text-bakery-brown text-lg leading-relaxed bg-bakery-cream/60 rounded-xl p-5 shadow-inner"
+          [innerHTML]="safeDescription">
+        </div>
       </div>
     </div>
+    
   </div>
 
-  <div class="loading" *ngIf="loading">
-    <p>Cargando producto...</p>
+  <!-- Loading y error -->
+  <div class="text-center mt-12" *ngIf="loading">
+    <span class="text-bakery-brown text-lg font-elegant animate-pulse">Cargando producto...</span>
   </div>
 
-  <div class="error" *ngIf="error">
-    <p>{{ error }}</p>
+  <div class="text-center mt-12" *ngIf="error">
+    <span class="text-red-600 text-lg font-semibold">{{ error }}</span>
   </div>
-
 </div>

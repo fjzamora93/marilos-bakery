@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsService } from '../../services/products.service';
 import { SeoService } from '../../services/seo.service';
 import { Product } from '../../models/product';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product',
@@ -16,25 +17,32 @@ export default class ProductComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private productsService = inject(ProductsService);
   private seoService = inject(SeoService);
+  private sanitizer = inject(DomSanitizer);
 
   product: Product | null = null;
+  safeDescription!: SafeHtml;
   loading = true;
   error: string | null = null;
 
+ 
+
   ngOnInit(): void {
     this.loadProduct();
+    console.log('PRODUCTO:', this.product?.seoTitle);
   }
 
-  private loadProduct(): void {
+    private loadProduct(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
     if (slug) {
       this.productsService.getProductBySlug(slug).subscribe({
         next: (product) => {
           this.product = product;
           this.loading = false;
+
           if (product) {
             this.updateSEO(product);
             this.addProductStructuredData(product);
+            this.formatDescription(); // 👈 formatea cuando llega
           }
         },
         error: (error) => {
@@ -48,6 +56,26 @@ export default class ProductComponent implements OnInit {
       this.loading = false;
     }
   }
+
+  private formatDescription() {
+  if (this.product?.description) {
+    let desc = this.product.description;
+
+    // 1. Reemplazar saltos de línea por <br>
+    desc = desc.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+    // 2. Transformar guiones al inicio de línea o tras <br> en viñetas
+    desc = desc.replace(/(^|<br\s*\/?>)\s*-\s*/g, '$1• ');
+
+    // 3. Poner en negrita lo que está entre la viñeta y la primera coma
+    desc = desc.replace(/(•\s*)([^,]+?),/g, (_, p1, p2) => {
+      return `${p1}<strong>${p2.trim()}</strong>,`;
+    });
+
+    this.safeDescription = this.sanitizer.bypassSecurityTrustHtml(desc);
+  }
+}
+
 
   private updateSEO(product: Product): void {
     const title = product.seoTitle || `${product.name} - Tu Tienda`;

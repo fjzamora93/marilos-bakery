@@ -75,15 +75,7 @@
             <mat-icon>cake</mat-icon>
             <span i18n="@@categoryTartas">Tartas</span>
           </button>
-          <button
-          (click)="changeCategory('experimental')"
-          [class]="selectedCategory === 'experimental' ?
-            'bg-accent-caramel text-bakery-cream shadow-warm' : 
-            'text-bakery-deep hover:text-accent-caramel'"
-          class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center space-x-2">
-          <mat-icon>science</mat-icon>
-          <span i18n="@@categoryTartas">Experimental</span>
-          </button>
+        
 
           <button
             (click)="changeCategory('saludable')"

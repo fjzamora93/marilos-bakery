@@ -30,12 +30,7 @@
         <span class="text-xl font-bold bg-gradient-to-r from-accent-caramel to-bakery-gold bg-clip-text text-transparent">
           {{ product.price | currency:'EUR':'symbol':'1.2-2':'es' }}
         </span>
-        <div class="flex items-center text-accent-honey">
-          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
-          </svg>
-          <span class="text-sm text-bakery-brown">4.8</span>
-        </div>
+       
       </div>
     </div>
   </a>
@@ -67,20 +62,13 @@
             {{ product.category }}
           </span>
         </div>
-        <p *ngIf="product.description" class="text-bakery-brown text-sm mb-3 line-clamp-2">
-          {{ product.description }}
-        </p>
-      </div>
-      
-      <div class="flex items-center justify-between">
-        <span class="text-xl font-bold bg-gradient-to-r from-accent-caramel to-bakery-gold bg-clip-text text-transparent">
-          {{ product.price | currency:'EUR':'symbol':'1.2-2':'es' }}
-        </span>
-        <div class="flex items-center text-accent-honey">
-          <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L13.09 8.26L22 9L17 14L18.18 22L12 19L5.82 22L7 14L2 9L10.91 8.26L12 2Z"/>
-          </svg>
-          <span class="text-sm text-bakery-brown">4.8</span>
+        <div class="flex items-center">
+          <p *ngIf="product.description" class="text-bakery-brown text-sm mb-0 line-clamp-2 max-w-[70%]">
+            {{ product.description }}
+          </p>
+          <span class="ml-auto text-xl font-bold bg-gradient-to-r from-accent-caramel to-bakery-gold bg-clip-text text-transparent whitespace-nowrap">
+            {{ product.price | number:'1.2-2' }} €
+          </span>
         </div>
       </div>
     </div>

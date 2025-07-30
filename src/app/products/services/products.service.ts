@@ -13,6 +13,8 @@ import { Category } from '../models/category';
 export class ProductsService {
   private firestore = inject(Firestore);
   private platformId = inject(PLATFORM_ID);
+  private productsCollection = collection(this.firestore, FIREBASE_MAIN_COLLECTION);
+
 
   // Verificar si estamos en el navegador
   private get isBrowser(): boolean {
@@ -66,8 +68,7 @@ export class ProductsService {
     }
 
     try {
-      const productsCollection = collection(this.firestore, 'products');
-      const productQuery = query(productsCollection, where('slug', '==', slug), limit(1));
+      const productQuery = query(this.productsCollection, where('slug', '==', slug), limit(1));
       
       return from(getDocs(productQuery)).pipe(
         map(snapshot => {

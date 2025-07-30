@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Product } from '../../models/product';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-product-card',
@@ -25,8 +26,12 @@ export class ProductCardComponent {
 
   // Navegar al detalle del producto
    goToProductDetail() {
-    const url = ['/', this.currentLang, 'reposteria', this.product.slug];
-    console.log('Navegando a:', url.join('/'));
+    var url: string[];
+    if (environment.production) {
+      url = ['/', this.currentLang, 'reposteria', this.product.slug];
+    } else {
+      url = ['reposteria', this.product.slug];
+    }
     this.router.navigate(url, { relativeTo: null });
   }
 }
