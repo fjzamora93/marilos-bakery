@@ -157,11 +157,11 @@ export default class ProductsComponent implements OnInit, OnDestroy {
 
   private setupSEO(): void {
     this.seoService.updateMetaTags({
-      title: 'Repostería Artesanal - Marilo\'s Bakery',
+      title: 'Repostería Artesanal - Momentos dulces de Mariló',
       description: 'Descubre nuestra exquisita colección de tartas, pasteles y dulces artesanales hechos con amor y los mejores ingredientes.',
-      keywords: 'repostería, tartas, pasteles, dulces, artesanal, Marilo\'s Bakery',
+      keywords: 'repostería, tartas, pasteles, dulces, artesanal, Momentos dulces de Mariló',
       type: 'website',
-      url: 'https://marilosbakery.com/reposteria'
+      url: 'https://dulcesmarilo.es/es/'
     });
   }
 

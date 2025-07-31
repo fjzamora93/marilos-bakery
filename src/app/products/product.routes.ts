@@ -5,7 +5,7 @@ export default [
   {
     path: '',
     loadComponent: () => import('../shared/pages/home/home.component'),
-    title: 'Home - Marilo\'s Bakery'
+    title: 'Momentos dulces de Mariló'
   },
   
   // Lista de productos
