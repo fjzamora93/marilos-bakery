@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Subscription } from 'rxjs';
 import { AdminProductsService } from '../../services/admin-product.service';
-import { Product } from '../../../products/models/product';
+import { Product } from '../../../shared/models/product';
 import { UpsertProductFormComponent } from '../../components/upsert-product-form/upsert-product-form.component';
 
 @Component({

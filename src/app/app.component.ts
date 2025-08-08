@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { SeoService } from './products/services/seo.service';
 import { LanguageService } from 'core/translation/language.service';
 import { isPlatformBrowser } from '@angular/common';
 import { environment } from '../environments/environment';
+import { SeoService } from './shared/services/seo.service';
 
 @Component({
   selector: 'app-root',

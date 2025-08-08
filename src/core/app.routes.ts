@@ -6,13 +6,13 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('../app/shared/layout/layout.component').then(m => m.default),
-    loadChildren: () => import('../app/products/product.routes').then(m => m.default),
+    loadChildren: () => import('../app/shared/shared.routes').then(m => m.default),
   },
   // About
   {
     path: 'about',
     loadComponent: () => import('../app/shared/layout/layout.component').then(m => m.default),
-    loadChildren: () => import('../app/shared/pages/shared.routes').then(m => m.default),
+    loadChildren: () => import('../app/shared/shared.routes').then(m => m.default),
   },
   // Admin
   {

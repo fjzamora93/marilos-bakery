@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminProductsService } from '../../services/admin-product.service';
-import { Product } from '../../../products/models/product';
+import { Product } from '../../../shared/models/product';
 import DashboardComponent from './dashboard.component';
 
 describe('DashboardComponent', () => {

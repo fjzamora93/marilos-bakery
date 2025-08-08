@@ -5,9 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Subscription } from 'rxjs';
 import { AdminProductsService } from '../../services/admin-product.service';
-import { Product } from '../../../products/models/product';
+import { Product } from '../../../shared/models/product';
 import { AuthService } from '../../../../core/auth/auth.service';
-import { Category } from '@app/products/models/category';
+import { Category } from '@app/shared/models/category';
 import { DragAndDropComponent } from "../drag-and-drop/drag-and-drop.component";
 
 @Component({

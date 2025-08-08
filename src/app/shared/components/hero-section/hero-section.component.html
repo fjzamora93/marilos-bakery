@@ -43,15 +43,15 @@
       <div class="relative">
         <div class="relative overflow-hidden rounded-3xl shadow-bakery group hover:shadow-sweet transition-all duration-500">
           <img 
-            src="img/wallpaper/wallpaper.webp" 
-            alt="Tarta artesanal de Momentos dulces de Mariló"
+            src="{{ randomProduct?.imageUrl || 'img/placeholder.webp' }}" 
+            alt="{{ randomProduct?.name || 'Imagen' }}" 
             class="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-500">
 
           <!-- Overlay -->
           <div class="absolute inset-0 bg-gradient-to-t from-bakery-deep/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
             <div class="text-white">
-              <h3 i18n="@@homeHeroImgOverlayTitle" class="text-xl font-elegant font-semibold mb-1">Tarta de Chocolate Artesanal</h3>
-              <p i18n="@@homeHeroImgOverlayDescription" class="text-sm text-bakery-cream">Con chocolate belga y crema casera</p>
+              <h3 i18n="@@homeHeroImgOverlayTitle" class="text-xl font-elegant font-semibold mb-1">{{ randomProduct?.name || 'Imagen' }} </h3>
+              <!--<p i18n="@@homeHeroImgOverlayDescription" class="text-sm text-bakery-cream">Con chocolate belga y crema casera</p>-->
             </div>
           </div>
 

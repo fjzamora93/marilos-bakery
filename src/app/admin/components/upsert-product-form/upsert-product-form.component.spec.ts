@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { UpsertProductFormComponent } from './upsert-product-form.component';
 import { AdminProductsService } from '../../services/admin-product.service';
 import { AuthService } from '../../../../core/auth/auth.service';
-import { Product } from '../../../products/models/product';
+import { Product } from '../../../shared/models/product';
 
 describe('UpsertProductFormComponent', () => {
   let component: UpsertProductFormComponent;

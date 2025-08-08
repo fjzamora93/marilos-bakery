@@ -21,7 +21,7 @@ export class AuthService {
     try {
       // Escuchar cambios en el estado de autenticación
       onAuthStateChanged(this.auth, (user) => {
-        console.log('Auth state changed:', user);
+        //console.log('Auth state changed:', user);
         this.currentUserSubject.next(user);
         if (!this.authInitialized) {
           this.authInitialized = true;
@@ -135,7 +135,7 @@ export class AuthService {
     }
 
     const uid = currentUser.uid;
-    console.log(`Verificando rol para el usuario con UID: ${uid}`);
+    //console.log(`Verificando rol para el usuario con UID: ${uid}`);
 
     try {
       const roleDocRef = doc(this.firestore, 'roles', uid);

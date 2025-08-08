@@ -18,7 +18,7 @@ import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { catchError, map, switchMap, tap, filter } from 'rxjs/operators';
 import { Auth, authState, User } from '@angular/fire/auth';
 import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage'; // ✅ Importar Storage de Firebase
-import { Product } from '@app/products/models/product';
+import { Product } from '@app/shared/models/product';
 import { FIREBASE_MAIN_COLLECTION, FIREBASE_STORAGE_FOLDER } from '@app/shared/constants/firebase.constants';
 import { optimizeImageForWeb } from '@app/shared/helper/util-functions';
 

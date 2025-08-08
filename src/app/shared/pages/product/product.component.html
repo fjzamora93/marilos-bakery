@@ -1,18 +1,36 @@
 <div class="min-h-screen py-10 px-4 sm:px-6 lg:px-8 bg-caramel">
   <div class="max-w-5xl mx-auto bg-white/90 rounded-3xl shadow-bakery p-6 sm:p-10 lg:p-14">
 
-   <div class="w-full">
-      <!-- Imagen flotante para pantallas grandes -->
-      <div
-        class="w-full sm:w-2/3 lg:w-[40%] lg:float-right lg:ml-8 mb-6 rounded-3xl overflow-hidden border-4 border-bakery-gold shadow-sweet aspect-w-4 aspect-h-3"
-      >
+    <!-- Solo muestra el contenido si product existe -->
+    <div *ngIf="product as p">
+      <div class="relative w-full h-full overflow-hidden rounded-3xl border-4 border-bakery-gold shadow-sweet aspect-w-4 aspect-h-3 bg-gray-200">
         <img 
-          [src]="product!.imageUrl!" 
-          [alt]="product!.name!"
-          class="w-full h-full object-cover"
+          [src]="p.imageUrl" 
+          [alt]="p.name"
+          class="w-full h-full object-cover transition-opacity duration-700"
+          [class.opacity-0]="!imageLoaded"
+          [class.opacity-100]="imageLoaded"
+          (load)="onImageLoad()"
           loading="lazy"
         />
+        <div *ngIf="!imageLoaded" class="absolute inset-0 bg-gray-300 animate-pulse"></div>
       </div>
+
+      <h1 class="text-4xl lg:text-5xl font-elegant font-bold text-bakery-deep mb-4">
+        {{ p.name }}
+      </h1>
+
+      <div class="flex flex-wrap items-center gap-4 mb-6">
+        <span class="inline-block bg-accent-caramel/90 text-bakery-cream px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-warm">
+          {{ p.price | number:'1.2-2' }} €
+        </span>
+      </div>
+
+      <div 
+        class="text-bakery-brown text-lg leading-relaxed bg-bakery-cream/60 rounded-xl p-5 shadow-inner"
+        [innerHTML]="safeDescription">
+      </div>
+    </div>
 
       <!-- Información del producto -->
       <div>
@@ -44,4 +62,3 @@
   <div class="text-center mt-12" *ngIf="error">
     <span class="text-red-600 text-lg font-semibold">{{ error }}</span>
   </div>
-</div>

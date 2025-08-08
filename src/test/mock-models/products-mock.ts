@@ -1,4 +1,4 @@
-import { Product } from '@app/products/models/product';
+import { Product } from '@app/shared/models/product';
 
 export const mockProducts: Product[] = [
  {

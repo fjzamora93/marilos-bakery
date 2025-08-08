@@ -1,10 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ProductsService } from '../../services/products.service';
-import { SeoService } from '../../services/seo.service';
+
 import { Product } from '../../models/product';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ProductsService } from '@app/shared/services/products.service';
+import { SeoService } from '@app/shared/services/seo.service';
 
 @Component({
   selector: 'app-product',
@@ -23,7 +24,7 @@ export default class ProductComponent implements OnInit {
   safeDescription!: SafeHtml;
   loading = true;
   error: string | null = null;
-
+imageLoaded = false;
  
 
   ngOnInit(): void {
@@ -76,6 +77,9 @@ export default class ProductComponent implements OnInit {
   }
 }
 
+onImageLoad() {
+  this.imageLoaded = true;
+}
 
   private updateSEO(product: Product): void {
     const title = product.seoTitle || `${product.name} - Tu Tienda`;

@@ -3,12 +3,12 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product';
-import { SeoService } from '../../services/seo.service';
-import { ProductCardComponent } from "@app/products/components/product-card/product-card.component";
-import { Category, stringToCategory } from '@app/products/models/category';
+import { Category, stringToCategory } from '@app/shared/models/category';
 import { MatIconModule } from '@angular/material/icon';
+import { ProductCardComponent } from '@app/shared/components/product-card/product-card.component';
+import { ProductsService } from '@app/shared/services/products.service';
+import { SeoService } from '@app/shared/services/seo.service';
 
 @Component({
   selector: 'app-products',
@@ -113,7 +113,7 @@ export default class ProductsComponent implements OnInit, OnDestroy {
       this.filteredProducts = [...this.products];
       return;
     }
-
+    console.log("Filtrando por categoría:", this.selectedCategory);
     const normalizedCategory = this.selectedCategory.toLowerCase().replace(/-/g, ' ');
     this.filteredProducts = this.products.filter(product => 
       product.category.toLowerCase() === normalizedCategory ||
