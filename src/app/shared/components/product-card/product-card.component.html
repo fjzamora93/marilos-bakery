@@ -4,19 +4,30 @@
      class="block bg-white/70 backdrop-blur-sm rounded-2xl overflow-hidden border border-bakery-gold/30 transition-all duration-300 hover:transform hover:scale-105 shadow-sweet hover:shadow-bakery">
     
     <!-- Imagen -->
-    <div class="relative h-48 overflow-hidden">
-      <img  
-        [src]="product.imageUrl" 
-        [alt]="product.name"
-        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        loading="eager" />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-      
-      <!-- Badge de categoría -->
-      <div class="absolute top-3 left-3 bg-accent-caramel/90 text-bakery-cream px-3 py-1 rounded-full text-xs font-medium">
-        {{ product.category }}
-      </div>
-    </div>
+<div class="relative h-48 overflow-hidden">
+  <img  
+    [src]="product.imageUrl" 
+    [alt]="product.name"
+    [class.opacity-0]="!imageLoaded"
+    [class.opacity-100]="imageLoaded"
+    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+    loading="lazy" 
+    (load)="onImageLoad()" />
+  
+  <!-- Blur de fondo si imagen no cargada -->
+  <div 
+    *ngIf="!imageLoaded || !product.imageUrl" 
+    class="absolute inset-0 backdrop-blur-md bg-bakery-gold/20 animate-pulse z-10">
+  </div>
+
+  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-20"></div>
+
+  <!-- Badge -->
+  <div class="absolute top-3 left-3 bg-accent-caramel/90 text-bakery-cream px-3 py-1 rounded-full text-xs font-medium z-30">
+    {{ product.category }}
+  </div>
+</div>
+
 
     <!-- Información -->
     <div class="p-4">

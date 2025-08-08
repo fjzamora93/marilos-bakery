@@ -16,12 +16,16 @@ export class ProductCardComponent {
   @Input() product!: Product;
   @Input() isGridView: boolean = true; 
   currentLang: string;
+  imageLoaded: boolean = false;
 
 
    constructor(private router: Router, private route: ActivatedRoute) {
     this.currentLang = this.route.snapshot.paramMap.get('lang') || 'es';
   }
 
+  onImageLoad() {
+    this.imageLoaded = true;
+  }
 
 
   // Navegar al detalle del producto

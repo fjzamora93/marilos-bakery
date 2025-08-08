@@ -25,7 +25,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   menuOptions: MenuOption[] = [];
   private authSubscription?: Subscription;
   private isBrowser: boolean;
-  
+  private keydownHandler = this.handleKeydown.bind(this);
+
 
 
   constructor(
@@ -48,7 +49,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
 
     if (this.isBrowser) {
-      this.document.addEventListener('keydown', this.handleKeydown.bind(this));
+      this.document.addEventListener('keydown', this.keydownHandler);
     }
 
     if (this.langService.getPreferredLanguage() === 'es') {
@@ -66,7 +67,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // Remover event listener
     if (this.isBrowser) {
-      this.document.removeEventListener('keydown', this.handleKeydown.bind(this));
+      this.document.removeEventListener('keydown', this.keydownHandler);
     }
   }
 
